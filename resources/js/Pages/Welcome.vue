@@ -1,28 +1,36 @@
 <template>
     <div class="bg-white">
     <!-- MODAL DE BIENVENIDA -->
-    <transition name="fade">
-      <div v-if="showModal" class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center">
-        <div class="relative bg-yellow-400 text-center text-gray-900 rounded-xl p-8 max-w-lg shadow-2xl">
+    <!-- Modal Bienvenida -->
+<transition name="slide-up">
+  <div
+    v-if="showModal"
+    class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center"
+  >
+    <div
+      class="relative bg-yellow-400 text-center text-gray-900 rounded-xl p-8 max-w-lg shadow-2xl"
+    >
+      <!-- Botón de cerrar -->
+      <button
+        @click="closeModal"
+        class="absolute top-4 right-4 text-2xl font-bold text-gray-800 hover:text-gray-600"
+      >
+        &times;
+      </button>
 
-          <!-- Botón de cerrar -->
-          <button @click="closeModal" class="absolute top-4 right-4 text-2xl font-bold text-gray-800 hover:text-gray-600">
-            &times;
-          </button>
+      <h2 class="text-3xl font-extrabold mb-4">NUESTRO COMPROMISO</h2>
 
-          <!-- Contenido -->
-          <h2 class="text-3xl font-extrabold mb-4">NUESTRO COMPROMISO</h2>
+      <img src="/img/logo.png" alt="Logo Santa Emma" class="mx-auto h-12 mb-2" />
 
-          <img src="/img/logo-santaemma.png" alt="Logo Santa Emma" class="mx-auto h-12 mb-2" />
+      <h3 class="text-xl font-semibold mt-2">MARCELO OYARZUN ARANGUIZ</h3>
 
-          <h3 class="text-xl font-semibold mt-2">MARCELO OYARZUN ARANGUIZ</h3>
+      <p class="mt-4 text-gray-800">
+        Le doy la bienvenida a Constructora Santa Emma. Somos una empresa comprometida en cada uno de nuestros proyectos en ejecución.
+      </p>
+    </div>
+  </div>
+</transition>
 
-          <p class="mt-4 text-gray-800">
-            Le doy la bienvenida a Constructora Santa Emma. Somos una empresa comprometida en cada uno de nuestros proyectos en ejecución.
-          </p>
-        </div>
-      </div>
-    </transition>
 
     <Head>
   <title>Constructora Santa Emma · Construyendo tu futuro</title>
@@ -452,6 +460,8 @@ const closeModal = () => {
   showModal.value = false
 }
 
+
+
 onMounted(() => {
   if (!localStorage.getItem('modalShown')) {
     showModal.value = true
@@ -646,10 +656,28 @@ const testimonials = [
   </script>
 
 <style scoped>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.3s ease;
+.slide-up-enter-active {
+  animation: slideInUp 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275);
 }
-.fade-enter-from, .fade-leave-to {
+
+.slide-up-leave-active {
+  transition: all 0.3s ease;
   opacity: 0;
+  transform: translateY(40px);
+}
+
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  80% {
+    transform: translateY(-6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
+
