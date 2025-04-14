@@ -1,5 +1,29 @@
 <template>
     <div class="bg-white">
+    <!-- MODAL DE BIENVENIDA -->
+    <transition name="fade">
+      <div v-if="showModal" class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center">
+        <div class="relative bg-yellow-400 text-center text-gray-900 rounded-xl p-8 max-w-lg shadow-2xl">
+
+          <!-- Botón de cerrar -->
+          <button @click="closeModal" class="absolute top-4 right-4 text-2xl font-bold text-gray-800 hover:text-gray-600">
+            &times;
+          </button>
+
+          <!-- Contenido -->
+          <h2 class="text-3xl font-extrabold mb-4">NUESTRO COMPROMISO</h2>
+
+          <img src="/img/logo-santaemma.png" alt="Logo Santa Emma" class="mx-auto h-12 mb-2" />
+
+          <h3 class="text-xl font-semibold mt-2">MARCELO OYARZUN ARANGUIZ</h3>
+
+          <p class="mt-4 text-gray-800">
+            Le doy la bienvenida a Constructora Santa Emma. Somos una empresa comprometida en cada uno de nuestros proyectos en ejecución.
+          </p>
+        </div>
+      </div>
+    </transition>
+
     <Head>
   <title>Constructora Santa Emma · Construyendo tu futuro</title>
   <meta name="description" content="Constructora Santa Emma ofrece proyectos de calidad, innovación y compromiso en el rubro de la construcción en Chile." />
@@ -417,10 +441,23 @@
   </template>
 
   <script setup>
-  import { defineComponent, h, ref } from 'vue'
+  import { defineComponent, h, ref , onMounted } from 'vue'
   import { Dialog, DialogPanel } from '@headlessui/vue'
   import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
   import { ArrowPathIcon, ChevronRightIcon, CloudArrowUpIcon, LockClosedIcon, ServerIcon } from '@heroicons/vue/20/solid'
+
+  const showModal = ref(false)
+
+const closeModal = () => {
+  showModal.value = false
+}
+
+onMounted(() => {
+  if (!localStorage.getItem('modalShown')) {
+    showModal.value = true
+    localStorage.setItem('modalShown', 'true')
+  }
+})
 
   const navigation = [
     { name: 'Product', href: '#' },
@@ -608,3 +645,11 @@ const testimonials = [
   const mobileMenuOpen = ref(false)
   </script>
 
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+</style>
