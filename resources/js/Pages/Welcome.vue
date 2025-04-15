@@ -7,7 +7,7 @@
     class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center"
   >
     <div
-      class="relative bg-yellow-400 text-center text-gray-900 rounded-xl p-8 max-w-3x1 shadow-2xl"
+      class="relative bg-yellow-400 text-center text-gray-900 rounded-xl p-12 max-w-3x2 w-[800px] shadow-2xl"
     >
       <!-- Botón de cerrar -->
       <button
