@@ -12,7 +12,6 @@
         subtitle="Desde la zona austral hacia todo Chile, con visión a largo plazo en obras civiles y gestión de activos."
         image="/img/dashboard/truck.jpg"
       />
-
       <!-- Servicios destacados -->
       <Servicios />
 

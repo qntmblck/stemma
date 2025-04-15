@@ -13,7 +13,7 @@
   </template>
 
   <script setup>
-  import Flashcard from '@/Components/Flashcard.vue'
+  import FlashCard from '@/Components/FlashCard.vue'
 
   const servicios = [
     {

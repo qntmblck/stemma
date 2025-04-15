@@ -38,6 +38,7 @@
     showModal.value = false
   }
 
+
   onMounted(() => {
     if (!localStorage.getItem('modalShown')) {
       showModal.value = true
