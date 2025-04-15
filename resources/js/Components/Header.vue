@@ -1,87 +1,61 @@
 <template>
-    <header class="absolute inset-x-0 top-0 z-50">
-      <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Menú principal">
+    <header class="fixed top-0 left-0 right-0 z-50 w-full bg-white/90 backdrop-blur-md shadow-sm">
+      <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 py-2 lg:px-8" aria-label="Menú principal">
+
         <!-- Logo -->
-        <div class="flex lg:flex-1">
-          <a href="#inicio" class="-m-1.5 p-1.5">
-            <span class="sr-only">Constructora Santa Emma</span>
-            <img class="h-10 w-auto" src="/img/logo-santaemma.png" alt="Logo Santa Emma" />
+        <div class="absolute -top-10 left-4 z-50">
+          <a href="/" class="flex items-center space-x-2">
+            <img src="/stemma.png" alt="Logo Santa Emma" class="h-32 w-auto drop-shadow-lg" />
           </a>
         </div>
 
-        <!-- Botón hamburguesa -->
-        <div class="flex lg:hidden">
-          <button
-            type="button"
-            class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            @click="mobileMenuOpen = true"
-          >
-            <span class="sr-only">Abrir menú principal</span>
-            <Bars3Icon class="size-6" aria-hidden="true" />
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:flex items-center space-x-8 ml-[24rem]">
+          <a href="/" class="text-sm font-medium text-gray-800 hover:text-yellow-600 transition">Inicio</a>
+          <a href="/nosotros" class="text-sm font-medium text-gray-800 hover:text-yellow-600 transition">Nosotros</a>
+          <a href="/proyectos" class="text-sm font-medium text-gray-800 hover:text-yellow-600 transition">Proyectos</a>
+          <a href="/catalogo" class="text-sm font-medium text-gray-800 hover:text-yellow-600 transition">Catálogo</a>
+          <a href="/contacto" class="text-sm font-medium text-gray-800 hover:text-yellow-600 transition">Contacto</a>
+        </div>
+
+        <!-- Botones Ingresar / Registrar -->
+        <div class="hidden lg:flex items-center gap-x-4">
+          <a href="/login" class="text-sm font-semibold text-gray-700 hover:text-yellow-600 transition">Ingresar</a>
+          <a href="/register" class="rounded-md bg-yellow-500 px-3 py-2 text-sm font-semibold text-white hover:bg-yellow-600 transition">Registrar</a>
+        </div>
+
+        <!-- Botón Mobile -->
+        <div class="lg:hidden ml-auto">
+          <button @click="isOpen = !isOpen" class="text-gray-700 focus:outline-none">
+            <svg v-if="!isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
-        </div>
-
-        <!-- Navegación escritorio -->
-        <div class="hidden lg:flex lg:gap-x-12">
-          <a href="#inicio" class="text-sm font-semibold text-gray-900">Inicio</a>
-          <a href="#nosotros" class="text-sm font-semibold text-gray-900">Nosotros</a>
-          <a href="#proyectos" class="text-sm font-semibold text-gray-900">Proyectos</a>
-          <a href="#catalogo" class="text-sm font-semibold text-gray-900">Catálogo</a>
-          <a href="#contacto" class="text-sm font-semibold text-gray-900">Contacto</a>
-        </div>
-
-        <!-- Ingresar / Registrar -->
-        <div class="hidden lg:flex lg:flex-1 lg:justify-end gap-x-4">
-          <a :href="route('login')" class="text-sm font-semibold text-gray-900 hover:text-indigo-600 transition">Ingresar</a>
-          <a :href="route('register')" class="text-sm font-semibold text-gray-900 hover:text-indigo-600 transition">Registrar</a>
         </div>
       </nav>
 
-      <!-- Menú móvil -->
-      <Dialog class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
-        <div class="fixed inset-0 z-50" />
-        <DialogPanel
-          class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
-        >
-          <div class="flex items-center justify-between">
-            <a href="#inicio" class="-m-1.5 p-1.5">
-              <span class="sr-only">Constructora Santa Emma</span>
-              <img class="h-10 w-auto" src="/img/logo-santaemma.png" alt="Logo Santa Emma" />
-            </a>
-            <button
-              type="button"
-              class="-m-2.5 rounded-md p-2.5 text-gray-700"
-              @click="mobileMenuOpen = false"
-            >
-              <span class="sr-only">Cerrar menú</span>
-              <XMarkIcon class="size-6" aria-hidden="true" />
-            </button>
-          </div>
-          <div class="mt-6 flow-root">
-            <div class="-my-6 divide-y divide-gray-500/10">
-              <div class="space-y-2 py-6">
-                <a href="#inicio" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Inicio</a>
-                <a href="#nosotros" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Nosotros</a>
-                <a href="#proyectos" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Proyectos</a>
-                <a href="#catalogo" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Catálogo</a>
-                <a href="#contacto" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Contacto</a>
-              </div>
-              <div class="py-6 flex flex-col gap-y-2">
-                <a :href="route('login')" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Ingresar</a>
-                <a :href="route('register')" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Registrar</a>
-              </div>
-            </div>
-          </div>
-        </DialogPanel>
-      </Dialog>
+      <!-- Mobile Navigation -->
+      <div v-if="isOpen" class="lg:hidden bg-white shadow-md px-4 pt-4 pb-6 space-y-4">
+        <a href="/" class="block text-sm font-medium text-gray-800 hover:text-yellow-600">Inicio</a>
+        <a href="/nosotros" class="block text-sm font-medium text-gray-800 hover:text-yellow-600">Nosotros</a>
+        <a href="/proyectos" class="block text-sm font-medium text-gray-800 hover:text-yellow-600">Proyectos</a>
+        <a href="/catalogo" class="block text-sm font-medium text-gray-800 hover:text-yellow-600">Catálogo</a>
+        <a href="/contacto" class="block text-sm font-medium text-gray-800 hover:text-yellow-600">Contacto</a>
+        <hr />
+        <a href="/login" class="block text-sm font-semibold text-gray-700 hover:text-yellow-600">Ingresar</a>
+        <a href="/register" class="block rounded-md bg-yellow-500 px-3 py-2 text-sm font-semibold text-white hover:bg-yellow-600 text-center">Registrar</a>
+      </div>
     </header>
   </template>
 
   <script setup>
   import { ref } from 'vue'
-  import { Dialog, DialogPanel } from '@headlessui/vue'
-  import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
-
-  const mobileMenuOpen = ref(false)
+  const isOpen = ref(false)
   </script>
-
