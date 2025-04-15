@@ -10,7 +10,7 @@
       <Hero
         title="Construimos confianza, gestionamos tu inversión"
         subtitle="Desde la zona austral hacia todo Chile, con visión a largo plazo en obras civiles y gestión de activos."
-        image="/img/dashboard/truck.jpg"
+        image="/img/h1.jpg"
       />
       <!-- Servicios destacados -->
       <Servicios />
