@@ -1,35 +1,44 @@
 <template>
     <div class="bg-white">
-      <!-- Modal de bienvenida (solo en Welcome.vue) -->
-      <ModalWelcome />
+      <!-- Head con título -->
+      <Head>
+        <title>Santa Emma | Construcción e Inversiones</title>
+      </Head>
 
-      <!-- Header principal -->
+      <!-- Modal de bienvenida (visible al recargar) -->
+      <ModalWelcome v-if="showModal" @close="showModal = false" />
+
+      <!-- Header -->
       <Header />
 
-      <!-- Hero adaptado para visión e inversión -->
+      <!-- Hero -->
       <Hero
         title="Construimos confianza, gestionamos tu inversión"
         subtitle="Desde la zona austral hacia todo Chile, con visión a largo plazo en obras civiles y gestión de activos."
         image="/img/h1.jpg"
       />
-      <!-- Servicios destacados -->
+
+      <!-- Servicios -->
       <Servicios />
 
-      <!-- Proyectos destacados -->
+      <!-- Proyectos -->
       <ProyectosDestacados />
 
-      <!-- Renovación de maquinarias -->
+      <!-- Maquinarias -->
       <Maquinarias />
 
-      <!-- Testimonios de clientes reales -->
+      <!-- Testimonios -->
       <Testimonios />
 
-      <!-- Footer institucional -->
+      <!-- Footer -->
       <Footer />
     </div>
   </template>
 
   <script setup>
+  import { ref } from 'vue'
+  import { Head } from '@inertiajs/vue3'
+
   import Header from '@/Components/Header.vue'
   import Hero from '@/Components/Hero.vue'
   import ModalWelcome from '@/Components/ModalWelcome.vue'
@@ -38,8 +47,7 @@
   import Maquinarias from '@/Components/Maquinarias.vue'
   import Testimonios from '@/Components/Testimonios.vue'
   import Footer from '@/Components/Footer.vue'
-  </script>
 
-  <style scoped>
-  /* Estilos generales para Welcome.vue (si se requieren) */
-  </style>
+  // Modal visible al cargar la página
+  const showModal = ref(true)
+  </script>
