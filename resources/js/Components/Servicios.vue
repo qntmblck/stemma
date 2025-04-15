@@ -1,7 +1,7 @@
 <template>
     <section id="servicios" class="bg-white">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full h-[300px]">
-        <Flashcard
+        <FlashCard
           v-for="(servicio, index) in servicios"
           :key="index"
           :title="servicio.title"
