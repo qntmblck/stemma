@@ -7,7 +7,7 @@
     class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center"
   >
     <div
-      class="relative bg-yellow-400 text-center text-gray-900 rounded-xl p-8 max-w-lg shadow-2xl"
+      class="relative bg-yellow-400 text-center text-gray-900 rounded-xl p-8 max-w-3x1 shadow-2xl"
     >
       <!-- Botón de cerrar -->
       <button
@@ -19,7 +19,7 @@
 
       <h2 class="text-3xl font-extrabold mb-4">NUESTRO COMPROMISO</h2>
 
-      <img src="/img/logo.png" alt="Logo Santa Emma" class="mx-auto h-12 mb-2" />
+      <img src="/stemma.png" alt="Logo Santa Emma" class="mx-auto h-64 mb-8" />
 
       <h3 class="text-xl font-semibold mt-2">MARCELO OYARZUN ARANGUIZ</h3>
 
@@ -456,6 +456,8 @@
 const closeModal = () => {
   showModal.value = false
 }
+
+localStorage.removeItem('modalShown') // ⚠️ solo para desarrollo
 
 onMounted(() => {
   if (!localStorage.getItem('modalShown')) {
