@@ -1,7 +1,6 @@
 <template>
     <div class="bg-white">
     <!-- MODAL DE BIENVENIDA -->
-    <!-- Modal Bienvenida -->
 <transition name="slide-up">
   <div
     v-if="showModal"
@@ -30,7 +29,6 @@
     </div>
   </div>
 </transition>
-
 
     <Head>
   <title>Constructora Santa Emma · Construyendo tu futuro</title>
@@ -107,7 +105,6 @@
     </DialogPanel>
   </Dialog>
 </header>
-
 
       <main>
 
@@ -459,8 +456,6 @@
 const closeModal = () => {
   showModal.value = false
 }
-
-
 
 onMounted(() => {
   if (!localStorage.getItem('modalShown')) {
