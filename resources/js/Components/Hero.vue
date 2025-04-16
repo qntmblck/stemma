@@ -1,6 +1,6 @@
 <template>
-    <section class="relative isolate overflow-hidden bg-gray-900 py-32 sm:py-40 lg:py-48">
-      <!-- Contenedor con imagen de fondo fija -->
+    <section class="relative isolate overflow-hidden bg-gray-900 h-[70vh]">
+      <!-- Imagen de fondo con efecto fijo -->
       <div
         class="absolute inset-0 -z-10 bg-fixed bg-cover bg-center"
         :style="{ backgroundImage: `url(${image})` }"
@@ -8,21 +8,27 @@
         <div class="w-full h-full bg-black/50 mix-blend-multiply"></div>
       </div>
 
-      <!-- Contenido -->
-      <div class="mx-auto max-w-7xl px-6 lg:px-8 text-center">
-        <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-          {{ title }}
-        </h1>
+      <!-- Contenido alineado abajo a la izquierda -->
+      <div class="flex h-full items-end">
+        <div class="px-6 lg:px-16 pb-20 text-left">
+          <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white uppercase">
+            {{ title }}
+          </h1>
+          <p
+            v-if="subtitle"
+            class="mt-4 text-lg sm:text-xl text-white max-w-xl leading-snug"
+          >
+            {{ subtitle }}
+          </p>
 
-        <p
-          v-if="subtitle"
-          class="mt-10 text-lg leading-relaxed text-gray-300 max-w-2xl mx-auto"
-        >
-          {{ subtitle }}
-        </p>
-
-        <div v-if="$slots.default" class="mt-12 flex justify-center">
-          <slot />
+          <div class="mt-8">
+            <a
+              href="/catalogo"
+              class="inline-block border-2 border-white text-white font-semibold px-6 py-3 hover:bg-white hover:text-gray-900 transition rounded"
+            >
+              CATÁLOGO
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -44,4 +50,3 @@
     },
   })
   </script>
-
