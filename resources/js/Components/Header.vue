@@ -24,7 +24,7 @@
         </div>
 
         <!-- Desktop Navigation -->
-        <div class="hidden lg:flex items-center space-x-8 ml-[8rem]">
+        <div class="hidden lg:flex items-center space-x-8 ml-[-2rem]">
           <a href="/" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Inicio</a>
           <a href="/nosotros" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Nosotros</a>
           <a href="/proyectos" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Proyectos</a>
