@@ -26,10 +26,10 @@
         <!-- Desktop Navigation -->
         <div class="hidden lg:flex items-center space-x-8 ml-[-2rem]">
           <a href="/" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Inicio</a>
-          <a href="/nosotros" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Nosotros</a>
-          <a href="/proyectos" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Proyectos</a>
-          <a href="/catalogo" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Catálogo</a>
-          <a href="/contacto" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Contacto</a>
+          <a href="/" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Nosotros</a>
+          <a href="/" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Proyectos</a>
+          <a href="/" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Catálogo</a>
+          <a href="/" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Contacto</a>
         </div>
 
         <!-- Botones Escritorio -->
@@ -61,10 +61,10 @@
         class="lg:hidden bg-white/70 text-gray-800 px-4 pt-4 pb-6 space-y-4 shadow-md backdrop-blur-sm"
       >
         <a href="/" class="block text-sm font-bold hover:text-yellow-600 transition">Inicio</a>
-        <a href="/nosotros" class="block text-sm font-bold hover:text-yellow-600 transition">Nosotros</a>
-        <a href="/proyectos" class="block text-sm font-bold hover:text-yellow-600 transition">Proyectos</a>
-        <a href="/catalogo" class="block text-sm font-bold hover:text-yellow-600 transition">Catálogo</a>
-        <a href="/contacto" class="block text-sm font-bold hover:text-yellow-600 transition">Contacto</a>
+        <a href="/" class="block text-sm font-bold hover:text-yellow-600 transition">Nosotros</a>
+        <a href="/" class="block text-sm font-bold hover:text-yellow-600 transition">Proyectos</a>
+        <a href="/" class="block text-sm font-bold hover:text-yellow-600 transition">Catálogo</a>
+        <a href="/" class="block text-sm font-bold hover:text-yellow-600 transition">Contacto</a>
         <hr class="my-2 border-yellow-200" />
         <a href="/login" class="block text-sm font-bold hover:text-yellow-600 transition">Ingresar</a>
         <a href="/register" class="block text-sm font-bold text-yellow-700 hover:text-yellow-800 transition">Registrar</a>
