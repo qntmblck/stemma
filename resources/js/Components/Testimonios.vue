@@ -39,7 +39,7 @@
             <figcaption class="flex items-center gap-x-4 border-t border-gray-200 px-6 py-4">
               <img
                 class="size-10 rounded-full object-cover border-2 border-yellow-500"
-                src="/img/testimonios/valentina.jpg"
+                src="/img/testimonios/ener.png"
                 alt="Valentina Espinoza"
               />
               <div class="flex-auto">
@@ -82,7 +82,7 @@
       author: {
         name: 'Carlos Riquelme',
         handle: 'AgroSur',
-        imageUrl: '/img/testimonios/carlos.jpg',
+        imageUrl: '/img/testimonios/agrosur.png',
       },
     },
     {
@@ -90,7 +90,7 @@
       author: {
         name: 'Luis Araya',
         handle: 'Independiente',
-        imageUrl: '/img/testimonios/luis.jpg',
+        imageUrl: '/img/testimonios/independiente.png',
       },
     },
     {
@@ -98,7 +98,7 @@
       author: {
         name: 'Ignacio Contreras',
         handle: 'Inversionista',
-        imageUrl: '/img/testimonios/ignacio.jpg',
+        imageUrl: '/img/testimonios/inversionista.png',
       },
     },
     {
@@ -106,7 +106,7 @@
       author: {
         name: 'SINEP',
         handle: 'SINEP ENERGÍA Y CONSTRUCCIÓN',
-        imageUrl: '/img/testimonios/sinep.jpg',
+        imageUrl: '/img/testimonios/sinep.png',
       },
     },
     {
@@ -114,7 +114,7 @@
       author: {
         name: 'María López',
         handle: 'Constructora Andes',
-        imageUrl: '/img/testimonios/maria.jpg',
+        imageUrl: '/img/testimonios/closandes.png',
       },
     },
     {
@@ -122,7 +122,7 @@
       author: {
         name: 'Pedro González',
         handle: 'Urbanizaciones del Sur',
-        imageUrl: '/img/testimonios/pedro.jpg',
+        imageUrl: '/img/testimonios/csur.png',
       },
     },
   ]
