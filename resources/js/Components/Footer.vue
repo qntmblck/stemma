@@ -1,38 +1,45 @@
 <template>
     <footer class="bg-white">
-      <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <!-- Información de la empresa -->
-          <div class="text-gray-800">
+      <div class="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <!-- Información -->
+          <div class="flex flex-col items-center text-center">
             <h2 class="text-2xl font-bold text-yellow-600">Constructora Santa Emma</h2>
-            <p class="mt-6 max-w-lg text-sm leading-6">
+            <p class="mt-6 max-w-2xl text-sm leading-6 text-gray-800">
               Nos es grato dirigirnos a ustedes con el fin de presentar a nuestra empresa dedicada hace más de 10 años al transporte de áridos y arriendo de maquinarias,
               implementando hace 4 años la elaboración y ejecución de proyectos de ingeniería y construcción.
             </p>
 
-            <div class="mt-8 space-y-8 text-sm">
+            <!-- Ubicación -->
+            <div class="mt-8 text-sm">
+              <h3 class="font-bold uppercase text-gray-900">Ubicación</h3>
+              <p class="mt-2">Puerto Montt: Camino Sector Piedra Azul, Carretera Austral Km 15.</p>
+              <p>Frutillar: Cristino Winkler 238, Frutillar Alto</p>
+            </div>
+
+            <!-- Teléfono y correo -->
+            <div class="mt-8 flex flex-col sm:flex-row sm:justify-center sm:space-x-16 text-sm text-left sm:text-center">
+              <!-- Teléfono -->
               <div>
-                <h3 class="font-bold uppercase text-gray-900">Ubicación</h3>
-                <p class="mt-2">Puerto Montt: Camino Sector Piedra Azul, Carretera Austral Km 15.</p>
-                <p>Frutillar: Cristino Winkler 238, Frutillar Alto</p>
+                <h3 class="font-bold uppercase text-gray-900 text-center">Teléfono</h3>
+                <p class="mt-4 text-center">+569 7135 4511</p>
+                <p class="text-center">+569 4803 1169</p>
               </div>
 
-              <div class="flex flex-col md:flex-row md:items-start md:space-x-12 mt-4">
-                <div>
-                  <h3 class="font-bold uppercase text-gray-900">Teléfono</h3>
-                  <p class="mt-4">+569 7135 4511</p>
-                  <p>+569 4803 1169</p>
-                </div>
-                <div>
-                  <h3 class="font-bold uppercase text-gray-900">Correo</h3>
-                  <p class="mt-4">📧 contacto@santaemma.cl</p>
-                  <p>📨 quejas@santaemma.cl</p>
-                </div>
+              <!-- Correo -->
+              <div>
+                <h3 class="font-bold uppercase text-gray-900 text-center mt-8 sm:mt-0">Correo</h3>
+                <p class="mt-4 text-center">
+                  📧 <a href="mailto:contacto@santaemma.cl" class="hover:underline">contacto@santaemma.cl</a>
+                </p>
+                <p class="text-center">
+                  📨 <a href="mailto:quejas@santaemma.cl" class="hover:underline">quejas@santaemma.cl</a>
+                </p>
               </div>
             </div>
           </div>
 
-          <!-- Mapa de Google -->
+          <!-- Mapa -->
           <div class="w-full h-96 rounded-xl overflow-hidden shadow-xl">
             <iframe
               src="https://www.google.com/maps?q=Parcela+Santa+Elena,+Puerto+Montt,+Los+Lagos,+Chile&output=embed"

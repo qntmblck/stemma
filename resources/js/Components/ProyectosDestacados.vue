@@ -43,22 +43,22 @@
             </button>
           </div>
 
-          <!-- Descripción -->
-<div class="flex flex-col justify-center text-left">
+        <!-- Descripción -->
+<div class="flex flex-col items-center justify-center text-center h-full">
   <h3 class="text-3xl font-semibold text-white">Parque Eólico Puelche Sur</h3>
-  <p class="mt-4 text-gray-300">
+  <p class="mt-4 text-gray-300 max-w-xl">
     Proyecto desarrollado en la Región de Los Lagos con una capacidad instalada de 165 MW, contribuyendo a la matriz energética renovable de Chile. Santa Emma ejecutó fundaciones para torres eólicas y obras anexas.
   </p>
-  <p class="mt-4 text-gray-300">
+  <p class="mt-4 text-gray-300 max-w-xl">
     Se destaca el cumplimiento de plazos, respeto por el entorno natural y colaboración con empresas internacionales del sector energético.
   </p>
-  <ul class="mt-6 list-disc list-inside text-gray-200">
+  <ul class="mt-6 list-disc list-inside text-gray-200 text-left max-w-xl">
     <li>+50 fundaciones ejecutadas</li>
     <li>Conexión vial de 12 km de caminos estabilizados</li>
     <li>Impacto directo en comunidades rurales aledañas</li>
   </ul>
 
-  <div class="mt-8 self-start sm:self-center">
+  <div class="mt-8">
     <a
       href="/proyectos"
       class="inline-block rounded-md bg-yellow-500 px-5 py-3 text-white font-semibold hover:bg-yellow-400 transition"
@@ -67,6 +67,7 @@
     </a>
   </div>
 </div>
+
 
         </div>
       </div>
@@ -77,9 +78,9 @@
   import { ref } from 'vue'
 
   const images = [
-    '/img/p1.jpg',
+    '/img/p1.jpg?=v1',
     '/img/p2.jpg',
-    '/img/p3.jpg',
+    '/img/p3.jpg?=v2',
     '/img/p4.jpg',
   ]
 
