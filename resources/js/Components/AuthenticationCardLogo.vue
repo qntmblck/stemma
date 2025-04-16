@@ -8,7 +8,7 @@ import { Link } from '@inertiajs/vue3';
             <img
               src="/stemma1.png?=v2"
               alt="Logo Santa Emma"
-              class="h-20 lg:h-20 w-auto drop-shadow-lg transition-all duration-300"
+              class="h-24 lg:h-24 w-auto drop-shadow-lg transition-all duration-300"
             />
           </a>
     </Link>
