@@ -1,6 +1,5 @@
 <template>
     <section id="maquinarias" class="bg-black py-16 px-2 sm:px-4 lg:px-6 text-white w-full">
-
       <!-- Texto superior -->
       <div class="mb-10 max-w-6xl mx-auto text-center">
         <p class="text-base sm:text-lg font-bold leading-relaxed tracking-wide">
@@ -12,12 +11,12 @@
       <div class="relative">
         <!-- Flecha izquierda -->
         <button
-  @click="prevSlide"
-  class="absolute -left-6 top-1/2 z-10 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white shadow rounded-full p-4 text-3xl"
-  aria-label="Anterior"
->
-  ‹
-</button>
+          @click="prevSlide"
+          class="absolute -left-6 top-1/2 z-10 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white shadow rounded-full p-4 text-3xl"
+          aria-label="Anterior"
+        >
+          ‹
+        </button>
 
         <!-- Carrusel de tarjetas -->
         <div class="overflow-hidden">
@@ -43,12 +42,12 @@
 
         <!-- Flecha derecha -->
         <button
-  @click="nextSlide"
-  class="absolute -right-6 top-1/2 z-10 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white shadow rounded-full p-4 text-3xl"
-  aria-label="Siguiente"
->
-  ›
-</button>
+          @click="nextSlide"
+          class="absolute -right-6 top-1/2 z-10 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white shadow rounded-full p-4 text-3xl"
+          aria-label="Siguiente"
+        >
+          ›
+        </button>
       </div>
     </section>
   </template>
@@ -61,44 +60,44 @@
 
   const maquinarias = [
     {
-      nombre: 'Chancadora Impactadora Terex',
-      imagen: '/img/maquinarias/chancadora-terex.jpg',
-      descripcion: 'Potencia de 400 HP · Capacidad: 250 t/h · Ideal para áridos finos y medios.',
+      nombre: 'Camioneta Combustible GT TZ 38',
+      imagen: '/img/maquinarias/CAMION-COMBUSTIBLE.jpg',
+      descripcion: 'Mercedes-Benz 1016 · Capacidad 4 m³ · Transporte de combustible con estanque certificado.',
     },
     {
-      nombre: 'Rodillo Compactador CAT 12T',
-      imagen: '/img/maquinarias/rodillo-cat.jpg',
-      descripcion: 'Peso: 12 ton · Motor CAT C4.4 · Compactación eficiente en suelos y asfaltos.',
+      nombre: 'Camion Tolva LT HV 83',
+      imagen: '/img/maquinarias/camiontolva.jpg',
+      descripcion: 'Capacidad 14 m³ · Motor Euro 5 · Ideal para transporte de material granular.',
     },
     {
-      nombre: 'Generador Eléctrico 80kVA',
-      imagen: '/img/maquinarias/generador.jpg',
-      descripcion: 'Motor Perkins · Potencia continua 80kVA · ATS incorporado.',
+      nombre: 'Cargador Frontal SEM 656D',
+      imagen: '/img/maquinarias/cargadorfrontal.jpg',
+      descripcion: 'Capacidad 3 m³ · Motor Weichai · Alta eficiencia para movimientos de tierra.',
     },
     {
-      nombre: 'Planta dosificadora de áridos',
-      imagen: '/img/maquinarias/planta-dosificadora.jpg',
-      descripcion: '60 m³/h · Control automático · Tolvas para múltiples materiales.',
+      nombre: 'Chancadora Powerscreen Trakpactor',
+      imagen: '/img/maquinarias/chancacadora.jpg',
+      descripcion: 'Planta móvil impactadora · Alta capacidad de trituración para diversos tipos de roca.',
     },
     {
-      nombre: 'Excavadora Komatsu PC210',
-      imagen: '/img/maquinarias/excavadora-komatsu.jpg',
-      descripcion: 'Motor 165 HP · Profundidad: 6.6 m · Peso: 21 ton.',
+      nombre: 'Excavadora Sunward SWE210',
+      imagen: '/img/maquinarias/excavadora.jpg',
+      descripcion: 'Motor Isuzu 6BG1 · Peso operativo 21 ton · Ideal para excavaciones profundas.',
     },
     {
-      nombre: 'Retroexcavadora JCB 3CX',
-      imagen: '/img/maquinarias/retroexcavadora-jcb.jpg',
-      descripcion: 'Turbo diésel · Brazo extensible · Balde 1.1 m³.',
+      nombre: 'Motoniveladora 670G John Deere',
+      imagen: '/img/maquinarias/MOTONIVELADORA2.jpg',
+      descripcion: 'Motor John Deere 6.8L · Cuchilla de 3.66 m · Precisión en nivelación de terreno.',
     },
     {
-      nombre: 'Camión Tolva 6x4 Mercedes-Benz',
-      imagen: '/img/maquinarias/camion-tolva.jpg',
-      descripcion: 'Carga: 18 m³ · Motor Euro V · Tracción 6x4.',
+      nombre: 'Rodillo Compactador CS-533E',
+      imagen: '/img/maquinarias/rollocompactador.png',
+      descripcion: 'Compactador vibratorio · Rueda lisa · Ideal para subbases y asfaltos.',
     },
     {
-      nombre: 'Camión Aljibe 15.000L',
-      imagen: '/img/maquinarias/camion-aljibe.jpg',
-      descripcion: 'Tanque acero · Bomba presión · Riego y control de polvo.',
+      nombre: 'Planta Seleccionadora de Áridos',
+      imagen: '/img/maquinarias/seleccionadoraridos.jpg',
+      descripcion: 'Clasificación de material por granulometría · Transportadores y cribas vibradoras integradas.',
     },
   ]
 

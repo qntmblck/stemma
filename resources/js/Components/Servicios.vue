@@ -7,6 +7,8 @@
           :title="servicio.title"
           :description="servicio.description"
           :image="servicio.image"
+          :backTitle="servicio.backTitle"
+          :backDescription="servicio.backDescription"
         />
       </div>
     </section>
@@ -17,32 +19,41 @@
 
   const servicios = [
     {
-      title: 'Transporte de Materiales',
-      description: 'Maquinarias, Áridos, Asfalto, Tierra, Escombros, Silo de Maíz.',
-      image: '/img/1.jpg',
+      title: 'Transportes',
+      description: 'Traslado seguro de maquinarias, áridos, asfaltos, escombros y más.',
+      image: '/img/1.jpg?=v1',
+      backTitle: 'Transportes',
+      backDescription: 'Transporte profesional de maquinarias, áridos, asfalto, tierra, escombros y silo de maíz en rutas urbanas y rurales.',
     },
     {
       title: 'Movimiento de Tierras',
-      description: 'Excavaciones plataforma, retiro de escombros y relleno de terrenos.',
-      image: '/img/2.jpg',
+      description: 'Excavación, limpieza y habilitación de terrenos en todo tipo de suelo.',
+      image: '/img/2.jpg?=v2',
+      backTitle: 'Movimiento de Tierras',
+      backDescription: 'Ejecutamos excavaciones, retiros de escombros y rellenos, garantizando una plataforma estable para obras civiles y proyectos de ingeniería.',
     },
     {
-      title: 'Construcción de Oficinas',
-      description: 'Implementamos oficinas a medida con equipamiento de calidad.',
-      image: '/img/3.jpg',
+      title: 'Construcción',
+      description: 'Infraestructura modular y obras civiles en oficinas, bodegas y viviendas.',
+      image: '/img/3.jpg?=v2',
+      backTitle: 'Construcción',
+      backDescription: 'Desarrollamos construcciones de oficinas, bodegas y cabañas con soluciones eficientes, duraderas y adaptadas a cada proyecto.',
     },
     {
-      title: 'Arriendo de Maquinarias',
-      description: 'Tolvas, batea, granelera, motoniveladora, retroexcavadora, excavadora.',
-      image: '/img/4.jpg',
+      title: 'Arriendo de Camiones y Maquinarias',
+      description: 'Flota equipada disponible para faenas, obras y transporte especializado.',
+      image: '/img/4.jpg?=v2',
+      backTitle: 'Arriendo de Camiones y Maquinarias',
+      backDescription: 'Disponibilidad de camiones tolva, batea de árido, graneleras, motoniveladoras, retroexcavadoras y excavadoras, con operadores certificados.',
     },
   ]
   </script>
 
   <style scoped>
-  /* Elimina espacio entre las tarjetas */
   #servicios .grid > * {
     margin: 0 !important;
     padding: 0 !important;
   }
   </style>
+console.log('Servicios component loaded');
+console.log('Servicios data:', servicios);
