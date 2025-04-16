@@ -1,16 +1,30 @@
 <template>
-    <header class="fixed top-0 left-0 right-0 z-50 w-full bg-gradient-to-tr from-white via-yellow-50 to-yellow-100 backdrop-blur-sm shadow-md transition-all duration-300 rounded-b-md">
-      <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 py-2 lg:px-8" aria-label="Menú principal">
+    <header
+      class="fixed top-0 left-0 right-0 z-50 w-full
+        bg-white/70 lg:bg-gradient-to-tr
+        lg:from-white lg:via-yellow-50 lg:to-yellow-100
+        backdrop-blur-sm shadow-md transition-all duration-300
+        rounded-b-md lg:rounded-b-md mt-0.5 lg:mt-0"
+    >
+      <nav
+        class="relative max-w-7xl mx-auto flex items-center justify-between
+        px-4 py-0 lg:px-8"
+        aria-label="Menú principal"
+      >
 
-        <!-- Logo -->
-        <div class="absolute -top-6 left-4 z-50">
+        <!-- Logo centrado y responsive -->
+        <div>
           <a href="/" class="flex items-center space-x-2">
-            <img src="/stemma.png?=v2" alt="Logo Santa Emma" class="h-24 w-auto drop-shadow-lg" />
+            <img
+              src="/stemma.png?=v2"
+              alt="Logo Santa Emma"
+              class="h-16 lg:h-16 w-auto drop-shadow-lg transition-all duration-300"
+            />
           </a>
         </div>
 
         <!-- Desktop Navigation -->
-        <div class="hidden lg:flex items-center space-x-8 ml-[20rem]">
+        <div class="hidden lg:flex items-center space-x-8 ml-[8rem]">
           <a href="/" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Inicio</a>
           <a href="/nosotros" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Nosotros</a>
           <a href="/proyectos" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Proyectos</a>
@@ -18,7 +32,7 @@
           <a href="/contacto" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Contacto</a>
         </div>
 
-        <!-- Botones Ingresar / Registrar -->
+        <!-- Botones Escritorio -->
         <div class="hidden lg:flex items-center gap-x-4">
           <a href="/login" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Ingresar</a>
           <a href="/register" class="rounded-md bg-yellow-500 px-3 py-2 text-sm font-bold text-white hover:bg-yellow-600 transition">Registrar</a>
@@ -42,7 +56,10 @@
       </nav>
 
       <!-- Mobile Navigation -->
-      <div v-if="isOpen" class="lg:hidden bg-gradient-to-tr from-white via-yellow-50 to-yellow-100 text-gray-800 px-4 pt-4 pb-6 space-y-4 shadow-md backdrop-blur-sm">
+      <div
+        v-if="isOpen"
+        class="lg:hidden bg-white/70 text-gray-800 px-4 pt-4 pb-6 space-y-4 shadow-md backdrop-blur-sm"
+      >
         <a href="/" class="block text-sm font-bold hover:text-yellow-600 transition">Inicio</a>
         <a href="/nosotros" class="block text-sm font-bold hover:text-yellow-600 transition">Nosotros</a>
         <a href="/proyectos" class="block text-sm font-bold hover:text-yellow-600 transition">Proyectos</a>
