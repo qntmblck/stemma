@@ -1,7 +1,7 @@
 <template>
     <header
       class="fixed top-0 left-0 right-0 z-50 w-full
-        bg-white/70 lg:bg-gradient-to-tr
+        bg-white/90 lg:bg-gradient-to-tr
         lg:from-white lg:via-yellow-50 lg:to-yellow-100
         backdrop-blur-sm shadow-md transition-all duration-300
         rounded-b-md lg:rounded-b-md mt-0.5 lg:mt-0"
