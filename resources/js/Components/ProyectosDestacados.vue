@@ -1,7 +1,7 @@
 <template>
     <section
       id="proyectos"
-      class="relative isolate py-24 px-6 sm:px-8 lg:px-12 text-white"
+      class="relative isolate py-20 px-6 sm:px-8 lg:px-12 text-white"
     >
       <!-- Fondo fijo -->
       <div

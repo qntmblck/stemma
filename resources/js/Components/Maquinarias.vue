@@ -1,5 +1,5 @@
 <template>
-    <section id="maquinarias" class="bg-black py-16 px-2 sm:px-4 lg:px-6 text-white w-full">
+    <section id="maquinarias" class="bg-[#1c120a] py-8 px-2 sm:px-4 lg:px-6 text-white w-full">
       <!-- Texto superior -->
       <div class="mb-10 max-w-6xl mx-auto text-center">
         <p class="text-base sm:text-lg font-bold leading-relaxed tracking-wide">
