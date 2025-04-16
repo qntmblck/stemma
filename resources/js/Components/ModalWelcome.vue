@@ -17,7 +17,7 @@
 
           <h2 class="text-3xl font-extrabold mb-4">NUESTRO COMPROMISO</h2>
 
-          <img src="/stemma.png" alt="Logo Santa Emma" class="mx-auto h-52 sm:h-64 mb-8" />
+          <img src="/stemma.png" alt="Logo Santa Emma" class="mx-auto h-32 sm:h-32 mb-8" />
 
           <h3 class="text-xl font-semibold mt-2">MARCELO OYARZUN ARANGUIZ</h3>
 
