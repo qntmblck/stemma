@@ -21,11 +21,13 @@
       <!-- Servicios -->
       <Servicios />
 
+       <!-- Maquinarias -->
+       <Maquinarias />
+
+
       <!-- Proyectos -->
       <ProyectosDestacados />
 
-      <!-- Maquinarias -->
-      <Maquinarias />
 
       <!-- Testimonios -->
       <Testimonios />
