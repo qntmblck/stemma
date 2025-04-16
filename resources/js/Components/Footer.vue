@@ -39,18 +39,29 @@
             </div>
           </div>
 
-          <!-- Mapa -->
-          <div class="w-full h-96 rounded-xl overflow-hidden shadow-xl">
-            <iframe
-              src="https://www.google.com/maps?q=Parcela+Santa+Elena,+Puerto+Montt,+Los+Lagos,+Chile&output=embed"
-              width="100%"
-              height="100%"
-              style="border:0;"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
+          <!-- Mapa con carga diferida y placeholder -->
+<div class="w-full h-96 rounded-xl overflow-hidden shadow-xl relative">
+  <!-- Imagen de fondo como placeholder (opcional, puedes usar tu screenshot o uno genérico) -->
+  <img
+    src="/img/mapa-placeholder.jpg"
+    alt="Ubicación Constructora Santa Emma"
+    class="absolute inset-0 w-full h-full object-cover blur-sm transition-opacity duration-500"
+    :class="{ 'opacity-0': mapaVisible }"
+  />
+
+  <!-- Mapa -->
+  <iframe
+    v-show="mapaVisible"
+    @load="onMapLoad"
+    src="https://www.google.com/maps?q=Parcela+Santa+Elena,+Puerto+Montt,+Los+Lagos,+Chile&output=embed"
+    class="absolute inset-0 w-full h-full"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+</div>
+
         </div>
 
         <!-- Línea inferior -->
@@ -77,3 +88,19 @@
       </div>
     </footer>
   </template>
+
+<script setup>
+import { ref, onMounted } from 'vue' // ✅ ESTA LÍNEA FALTABA
+
+const mapaVisible = ref(false)
+
+onMounted(() => {
+  setTimeout(() => {
+    mapaVisible.value = true
+  }, 2000)
+})
+
+const onMapLoad = () => {
+  console.log('Mapa cargado')
+}
+</script>
