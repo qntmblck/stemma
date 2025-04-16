@@ -1,5 +1,5 @@
 <template>
-    <header class="fixed top-0 left-0 right-0 z-50 w-full bg-gradient-to-tr from-white via-yellow-50 to-yellow-100 backdrop-blur-sm shadow-md transition-all duration-300">
+    <header class="fixed top-0 left-0 right-0 z-50 w-full bg-gradient-to-tr from-white via-yellow-50 to-yellow-100 backdrop-blur-sm shadow-md transition-all duration-300 rounded-b-md">
       <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 py-2 lg:px-8" aria-label="Menú principal">
 
         <!-- Logo -->
