@@ -1,5 +1,5 @@
 <template>
-    <header class="fixed top-0 left-0 right-0 z-50 w-full bg-white/90 backdrop-blur-md shadow-sm">
+    <header class="fixed top-0 left-0 right-0 z-50 w-full bg-white/65 backdrop-blur-sm shadow-md transition-all duration-300">
       <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 py-2 lg:px-8" aria-label="Menú principal">
 
         <!-- Logo -->
@@ -10,18 +10,18 @@
         </div>
 
         <!-- Desktop Navigation -->
-        <div class="hidden lg:flex items-center space-x-8 ml-[24rem]">
-          <a href="/" class="text-sm font-medium text-gray-800 hover:text-yellow-600 transition">Inicio</a>
-          <a href="/nosotros" class="text-sm font-medium text-gray-800 hover:text-yellow-600 transition">Nosotros</a>
-          <a href="/proyectos" class="text-sm font-medium text-gray-800 hover:text-yellow-600 transition">Proyectos</a>
-          <a href="/catalogo" class="text-sm font-medium text-gray-800 hover:text-yellow-600 transition">Catálogo</a>
-          <a href="/contacto" class="text-sm font-medium text-gray-800 hover:text-yellow-600 transition">Contacto</a>
+        <div class="hidden lg:flex items-center space-x-8 ml-[20rem]">
+          <a href="/" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Inicio</a>
+          <a href="/nosotros" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Nosotros</a>
+          <a href="/proyectos" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Proyectos</a>
+          <a href="/catalogo" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Catálogo</a>
+          <a href="/contacto" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Contacto</a>
         </div>
 
         <!-- Botones Ingresar / Registrar -->
         <div class="hidden lg:flex items-center gap-x-4">
-          <a href="/login" class="text-sm font-semibold text-gray-700 hover:text-yellow-600 transition">Ingresar</a>
-          <a href="/register" class="rounded-md bg-yellow-500 px-3 py-2 text-sm font-semibold text-white hover:bg-yellow-600 transition">Registrar</a>
+          <a href="/login" class="text-sm font-bold text-gray-700 hover:text-yellow-600 transition">Ingresar</a>
+          <a href="/register" class="rounded-md bg-yellow-500 px-3 py-2 text-sm font-bold text-white hover:bg-yellow-600 transition">Registrar</a>
         </div>
 
         <!-- Botón Mobile -->
@@ -42,15 +42,15 @@
       </nav>
 
       <!-- Mobile Navigation -->
-      <div v-if="isOpen" class="lg:hidden bg-white shadow-md px-4 pt-4 pb-6 space-y-4">
-        <a href="/" class="block text-sm font-medium text-gray-800 hover:text-yellow-600">Inicio</a>
-        <a href="/nosotros" class="block text-sm font-medium text-gray-800 hover:text-yellow-600">Nosotros</a>
-        <a href="/proyectos" class="block text-sm font-medium text-gray-800 hover:text-yellow-600">Proyectos</a>
-        <a href="/catalogo" class="block text-sm font-medium text-gray-800 hover:text-yellow-600">Catálogo</a>
-        <a href="/contacto" class="block text-sm font-medium text-gray-800 hover:text-yellow-600">Contacto</a>
-        <hr />
-        <a href="/login" class="block text-sm font-semibold text-gray-700 hover:text-yellow-600">Ingresar</a>
-        <a href="/register" class="block rounded-md bg-yellow-500 px-3 py-2 text-sm font-semibold text-white hover:bg-yellow-600 text-center">Registrar</a>
+      <div v-if="isOpen" class="lg:hidden bg-white/65 backdrop-blur-sm px-4 pt-4 pb-6 space-y-4 shadow-md">
+        <a href="/" class="block text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Inicio</a>
+        <a href="/nosotros" class="block text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Nosotros</a>
+        <a href="/proyectos" class="block text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Proyectos</a>
+        <a href="/catalogo" class="block text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Catálogo</a>
+        <a href="/contacto" class="block text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Contacto</a>
+        <hr class="my-2" />
+        <a href="/login" class="block text-sm font-bold text-gray-700 hover:text-yellow-600 transition">Ingresar</a>
+        <a href="/register" class="block text-sm font-bold text-yellow-600 hover:text-yellow-700 transition">Registrar</a>
       </div>
     </header>
   </template>
