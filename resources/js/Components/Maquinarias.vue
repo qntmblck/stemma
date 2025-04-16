@@ -3,7 +3,7 @@
 
       <!-- Texto superior -->
       <div class="mb-10 max-w-6xl mx-auto text-center">
-        <p class="text-base sm:text-lg font-light leading-relaxed tracking-wide">
+        <p class="text-base sm:text-lg font-bold leading-relaxed tracking-wide">
           Actualización constante de equipos y servicios, para responder con eficiencia y seguridad a los desafíos de la construcción moderna.
         </p>
       </div>
@@ -12,12 +12,12 @@
       <div class="relative">
         <!-- Flecha izquierda -->
         <button
-          @click="prevSlide"
-          class="absolute -left-6 top-1/2 z-10 transform -translate-y-1/2 bg-white hover:bg-gray-100 text-gray-700 shadow rounded-full p-4 text-3xl"
-          aria-label="Anterior"
-        >
-          ‹
-        </button>
+  @click="prevSlide"
+  class="absolute -left-6 top-1/2 z-10 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white shadow rounded-full p-4 text-3xl"
+  aria-label="Anterior"
+>
+  ‹
+</button>
 
         <!-- Carrusel de tarjetas -->
         <div class="overflow-hidden">
@@ -43,12 +43,12 @@
 
         <!-- Flecha derecha -->
         <button
-          @click="nextSlide"
-          class="absolute -right-6 top-1/2 z-10 transform -translate-y-1/2 bg-white hover:bg-gray-100 text-gray-700 shadow rounded-full p-4 text-3xl"
-          aria-label="Siguiente"
-        >
-          ›
-        </button>
+  @click="nextSlide"
+  class="absolute -right-6 top-1/2 z-10 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white shadow rounded-full p-4 text-3xl"
+  aria-label="Siguiente"
+>
+  ›
+</button>
       </div>
     </section>
   </template>

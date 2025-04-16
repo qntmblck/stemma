@@ -1,7 +1,7 @@
 <template>
     <section
       id="proyectos"
-      class="relative isolate py-32 px-6 sm:px-8 lg:px-12 text-white"
+      class="relative isolate py-24 px-6 sm:px-8 lg:px-12 text-white"
     >
       <!-- Fondo fijo -->
       <div
@@ -31,13 +31,13 @@
             <!-- Controles -->
             <button
               @click="prevImage"
-              class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-r"
+              class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white p-3 text-xl font-bold rounded-r"
             >
               ‹
             </button>
             <button
               @click="nextImage"
-              class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-l"
+              class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white p-3 text-xl font-bold rounded-l"
             >
               ›
             </button>
@@ -60,10 +60,10 @@
 
             <div class="mt-8">
               <a
-                href="/contacto"
+                href="/proyectos"
                 class="inline-block rounded-md bg-yellow-500 px-5 py-3 text-white font-semibold hover:bg-yellow-400 transition"
               >
-                Cotiza tu proyecto con nosotros
+                Conoce nuestros Proyectos
               </a>
             </div>
           </div>

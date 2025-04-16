@@ -18,7 +18,7 @@
             :alt="title"
             class="object-cover w-full h-full"
           />
-          <div class="absolute bottom-0 w-full bg-black bg-opacity-50 text-white text-center py-2">
+          <div class="absolute bottom-0 w-full bg-yellow-500 text-white text-center py-2">
             <h3 class="text-lg font-semibold">{{ title }}</h3>
           </div>
         </div>

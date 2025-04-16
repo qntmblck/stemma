@@ -1,5 +1,5 @@
 <template>
-    <section id="testimonios" class="relative isolate mt-32 sm:mt-56 sm:pt-32 bg-gray-50 px-6 sm:px-8 lg:px-12">
+    <section id="testimonios" class="relative isolate pt-24 sm:pt-24 bg-gray-50 px-6 sm:px-8 lg:px-12">
       <div class="max-w-7xl mx-auto text-center">
         <h2 class="text-4xl font-bold text-gray-900 sm:text-5xl">Clientes que confían en Santa Emma</h2>
         <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
@@ -7,7 +7,7 @@
         </p>
       </div>
 
-      <div class="relative mt-20 grid max-w-7xl mx-auto gap-8 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1">
+      <div class="relative mt-16 grid max-w-7xl mx-auto gap-8 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1">
         <div
           v-for="(testimonio, i) in testimonios"
           :key="i"
