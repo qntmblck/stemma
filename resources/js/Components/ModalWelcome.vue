@@ -38,12 +38,9 @@
     showModal.value = false
   }
 
-
+  // Mostrar SIEMPRE al cargar la página
   onMounted(() => {
-    if (!localStorage.getItem('modalShown')) {
-      showModal.value = true
-      localStorage.setItem('modalShown', 'true')
-    }
+    showModal.value = true
   })
   </script>
 

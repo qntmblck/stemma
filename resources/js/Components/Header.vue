@@ -3,9 +3,9 @@
       <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 py-2 lg:px-8" aria-label="Menú principal">
 
         <!-- Logo -->
-        <div class="absolute -top-10 left-4 z-50">
+        <div class="absolute -top-6 left-4 z-50">
           <a href="/" class="flex items-center space-x-2">
-            <img src="/stemma.png" alt="Logo Santa Emma" class="h-32 w-auto drop-shadow-lg" />
+            <img src="/stemma.png?=v2" alt="Logo Santa Emma" class="h-24 w-auto drop-shadow-lg" />
           </a>
         </div>
 
