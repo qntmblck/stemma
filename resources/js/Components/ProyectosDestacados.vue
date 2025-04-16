@@ -3,13 +3,14 @@
       id="proyectos"
       class="relative isolate py-20 px-6 sm:px-8 lg:px-12 text-white"
     >
-      <!-- Fondo fijo -->
-      <div
-        class="absolute inset-0 -z-10 bg-fixed bg-cover bg-center"
-        style="background-image: url('/img/h2.jpg')"
-      >
-        <div class="w-full h-full bg-black/70 mix-blend-multiply"></div>
-      </div>
+      <!-- Fondo fijo solo en desktop -->
+<div
+  class="absolute inset-0 -z-10 bg-cover bg-center sm:bg-fixed"
+  style="background-image: url('/img/h2.jpg')"
+>
+  <div class="w-full h-full bg-black/70 mix-blend-multiply"></div>
+</div>
+
 
       <div class="max-w-7xl mx-auto">
         <!-- Título -->

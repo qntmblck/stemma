@@ -1,12 +1,13 @@
 <template>
     <section class="relative isolate overflow-hidden bg-gray-900 h-[70vh]">
-      <!-- Imagen de fondo con efecto fijo -->
-      <div
-        class="absolute inset-0 -z-10 bg-fixed bg-cover bg-center"
-        :style="{ backgroundImage: `url(${image})` }"
-      >
-        <div class="w-full h-full bg-black/50 mix-blend-multiply"></div>
-      </div>
+      <!-- Imagen de fondo con efecto fijo (solo en escritorio) -->
+<div
+  class="absolute inset-0 -z-10 bg-cover bg-center sm:bg-fixed"
+  :style="{ backgroundImage: `url(${image})` }"
+>
+  <div class="w-full h-full bg-black/50 mix-blend-multiply"></div>
+</div>
+
 
       <!-- Contenido alineado abajo a la izquierda -->
       <div class="flex h-full items-end">
