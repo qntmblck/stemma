@@ -66,7 +66,7 @@
 
         <!-- Línea inferior -->
         <div class="mt-16 flex flex-col md:flex-row items-center justify-between border-t border-gray-700 pt-6">
-          <p class="text-sm text-white font-semibold">© 2024 Constructora Santa Emma SpA. Todos los derechos reservados.</p>
+          <p class="text-sm text-white font-semibold">© 2024 Inversiones Santa Emma SpA. Todos los derechos reservados.</p>
           <div class="mt-4 md:mt-0 flex space-x-6">
             <a href="#" class="text-white hover:text-yellow-400 transition-colors" aria-label="Facebook">
               <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">

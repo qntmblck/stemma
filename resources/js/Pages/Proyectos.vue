@@ -6,8 +6,6 @@
 
       <IntroProyectos />
       <ProyectosGrid />
-      <FiltroProyectos />
-      <ProyectoModal />
 
       <Footer />
     </div>
@@ -17,10 +15,8 @@
   import { Head } from '@inertiajs/vue3'
   import Header from '@/Components/Header.vue'
   import Hero from '@/Components/Hero.vue'
-  import Footer from '@/Components/Footer.vue'
+  import Footer from '@/Components/Whitefooter.vue'
 
   import IntroProyectos from '@/Components/IntroProyectos.vue'
   import ProyectosGrid from '@/Components/ProyectosGrid.vue'
-  import FiltroProyectos from '@/Components/FiltroProyectos.vue'
-  import ProyectoModal from '@/Components/ProyectoModal.vue'
   </script>
