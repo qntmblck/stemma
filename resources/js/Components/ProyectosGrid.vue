@@ -23,14 +23,18 @@
               ‹
             </button>
 
-            <div class="overflow-hidden">
+            <div
+              class="overflow-hidden"
+              @touchstart="handleTouchStart"
+              @touchend="handleTouchEnd"
+            >
               <div
                 class="flex transition-transform duration-500 ease-in-out"
                 :style="{ transform: `translateX(-${proyectoActual * (100 / visibleCards)}%)` }"
               >
                 <div
-                  v-for="proyecto in proyectos"
-                  :key="proyecto.id"
+                  v-for="(proyecto, index) in proyectos"
+                  :key="proyecto.id + '-' + index"
                   class="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-4"
                 >
                   <div class="bg-[#2a1b13] rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-600 transition-shadow">
@@ -65,7 +69,8 @@
   <script setup>
   import { ref, onMounted, onUnmounted } from 'vue'
 
-  const proyectos = ref([
+  // Proyectos duplicados para reinicio visual suave
+  const proyectosBase = [
     {
       id: 1,
       titulo: 'Parque Eólico Puelche Sur',
@@ -114,14 +119,20 @@
       descripcion: 'Intervención técnica para la compactación y preparación de suelos industriales.',
       imagen: '/img/proyectos/celulosa.jpg',
     },
-  ])
+  ]
+
+  // Duplicar los 3 primeros para simular ciclo
+  const proyectos = ref([...proyectosBase, ...proyectosBase.slice(0, 3)])
 
   const proyectoActual = ref(0)
   const visibleCards = 3
 
   const siguiente = () => {
-    if (proyectoActual.value < proyectos.value.length - visibleCards) {
-      proyectoActual.value++
+    proyectoActual.value++
+    if (proyectoActual.value >= proyectos.value.length - visibleCards) {
+      setTimeout(() => {
+        proyectoActual.value = 0
+      }, 500)
     }
   }
 
@@ -135,7 +146,7 @@
     console.log('Abriendo modal para:', proyecto)
   }
 
-  // Script 1: fondo parallax móvil y desktop
+  // Detectar mobile para fondo parallax
   const isMobile = ref(false)
   const handleResize = () => {
     isMobile.value = window.innerWidth < 768
@@ -147,17 +158,31 @@
   })
   onUnmounted(() => {
     window.removeEventListener('resize', handleResize)
+    clearInterval(autoSlideInterval)
   })
 
-  // Script 2: auto slide
+  // AutoSlide
+  let autoSlideInterval
   function autoSlide() {
-    setInterval(() => {
-      if (proyectoActual.value < proyectos.value.length - visibleCards) {
-        proyectoActual.value++
-      } else {
-        proyectoActual.value = 0
-      }
-    }, 7000) // cada 7 segundos
+    autoSlideInterval = setInterval(() => {
+      siguiente()
+    }, 7000)
+  }
+
+  // Swipe en mobile
+  let touchStartX = 0
+  let touchEndX = 0
+
+  function handleTouchStart(e) {
+    touchStartX = e.changedTouches[0].screenX
+  }
+
+  function handleTouchEnd(e) {
+    touchEndX = e.changedTouches[0].screenX
+    const diff = touchStartX - touchEndX
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? siguiente() : anterior()
+    }
   }
   </script>
 
