@@ -1,11 +1,11 @@
 <template>
     <header
-      class="fixed top-0 left-0 right-0 z-50 w-full
-        bg-white/90 lg:bg-gradient-to-tr
-        lg:from-white lg:via-yellow-50 lg:to-yellow-100
-        backdrop-blur-sm shadow-md transition-all duration-300
-        rounded-b-md mt-0.5"
-    >
+  class="fixed top-0 left-0 right-0 z-50 w-full
+    bg-gradient-to-tr from-white via-yellow-50 to-yellow-100
+    shadow-md transition-all duration-300
+    rounded-b-md mt-0.5"
+>
+
       <nav
         class="relative max-w-7xl mx-auto flex items-center justify-between
         px-4 py-0 lg:px-8"
@@ -57,7 +57,7 @@
       <!-- Navegación Móvil -->
       <div
         v-if="isOpen"
-        class="lg:hidden bg-gradient-to-tr from-white via-yellow-50 to-yellow-100 text-gray-800 px-4 pt-4 pb-6 space-y-4 shadow-md backdrop-blur-sm"
+        class="lg:hidden bg-gradient-to-tr from-white via-yellow-50 to-yellow-100 text-gray-800 px-4 pt-4 pb-6 space-y-4 shadow-md"
       >
         <a :href="route('home')" class="block text-sm font-bold hover:text-yellow-600 transition">Inicio</a>
         <a :href="route('nosotros')" class="block text-sm font-bold hover:text-yellow-600 transition">Nosotros</a>
