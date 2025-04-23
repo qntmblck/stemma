@@ -18,7 +18,7 @@
           <div class="relative">
             <button
               @click="anterior"
-              class="absolute left-0 top-1/2 -translate-y-1/2 bg-yellow-500 hover:bg-yellow-600 text-white px-5 py-4 rounded-full z-10 text-4xl"
+              class="absolute left-0 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-10 text-3xl transition"
             >
               ‹
             </button>
@@ -56,7 +56,7 @@
 
             <button
               @click="siguiente"
-              class="absolute right-0 top-1/2 -translate-y-1/2 bg-yellow-500 hover:bg-yellow-600 text-white px-5 py-4 rounded-full z-10 text-4xl"
+              class="absolute right-0 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-10 text-3xl transition"
             >
               ›
             </button>
@@ -69,7 +69,6 @@
   <script setup>
   import { ref, onMounted, onUnmounted } from 'vue'
 
-  // Proyectos duplicados para reinicio visual suave
   const proyectosBase = [
     {
       id: 1,
@@ -121,14 +120,15 @@
     },
   ]
 
-  // Duplicar los 3 primeros para simular ciclo
+  // Duplicar los primeros para simular bucle suave
   const proyectos = ref([...proyectosBase, ...proyectosBase.slice(0, 3)])
 
   const proyectoActual = ref(0)
   const visibleCards = 3
+  const paso = 2
 
   const siguiente = () => {
-    proyectoActual.value++
+    proyectoActual.value += paso
     if (proyectoActual.value >= proyectos.value.length - visibleCards) {
       setTimeout(() => {
         proyectoActual.value = 0
@@ -137,8 +137,8 @@
   }
 
   const anterior = () => {
-    if (proyectoActual.value > 0) {
-      proyectoActual.value--
+    if (proyectoActual.value >= paso) {
+      proyectoActual.value -= paso
     }
   }
 
@@ -146,7 +146,7 @@
     console.log('Abriendo modal para:', proyecto)
   }
 
-  // Detectar mobile para fondo parallax
+  // Detectar si es móvil para fondo parallax
   const isMobile = ref(false)
   const handleResize = () => {
     isMobile.value = window.innerWidth < 768
@@ -169,14 +169,13 @@
     }, 7000)
   }
 
-  // Swipe en mobile
+  // Swipe móvil
   let touchStartX = 0
   let touchEndX = 0
 
   function handleTouchStart(e) {
     touchStartX = e.changedTouches[0].screenX
   }
-
   function handleTouchEnd(e) {
     touchEndX = e.changedTouches[0].screenX
     const diff = touchStartX - touchEndX
