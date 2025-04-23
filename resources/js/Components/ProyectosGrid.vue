@@ -1,61 +1,69 @@
 <template>
-    <section class="bg-[#1c120a] py-24 text-white">
-      <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold tracking-tight text-yellow-500">Nuestros Proyectos</h2>
-          <p class="mt-4 text-lg text-gray-200">
-            Una selección de obras emblemáticas realizadas por nuestro equipo en diversas regiones del país.
-          </p>
-        </div>
+    <section
+      class="relative text-white bg-center bg-cover"
+      :class="{ 'bg-fixed': !isMobile }"
+      :style="{ backgroundImage: 'url(/img/h1.jpg)' }"
+    >
+      <div class="bg-[#1c120acc] py-24 text-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+          <!-- Título -->
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold tracking-tight text-yellow-500">Nuestros Proyectos</h2>
+            <p class="mt-4 text-lg text-gray-200">
+              Una selección de obras emblemáticas realizadas por nuestro equipo en diversas regiones del país.
+            </p>
+          </div>
 
-        <div class="relative">
-          <button
-            @click="anterior"
-            class="absolute left-0 top-1/2 -translate-y-1/2 bg-yellow-500 hover:bg-yellow-600 text-white px-5 py-4 rounded-full z-10 text-4xl"
-          >
-            ‹
-          </button>
-
-          <div class="overflow-hidden">
-            <div
-              class="flex transition-transform duration-500 ease-in-out"
-              :style="{ transform: `translateX(-${proyectoActual * (100 / visibleCards)}%)` }"
+          <!-- Carrusel -->
+          <div class="relative">
+            <button
+              @click="anterior"
+              class="absolute left-0 top-1/2 -translate-y-1/2 bg-yellow-500 hover:bg-yellow-600 text-white px-5 py-4 rounded-full z-10 text-4xl"
             >
+              ‹
+            </button>
+
+            <div class="overflow-hidden">
               <div
-                v-for="proyecto in proyectos"
-                :key="proyecto.id"
-                class="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-4"
+                class="flex transition-transform duration-500 ease-in-out"
+                :style="{ transform: `translateX(-${proyectoActual * (100 / visibleCards)}%)` }"
               >
-                <div class="bg-[#2a1b13] rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-600 transition-shadow">
-                  <img :src="proyecto.imagen" :alt="proyecto.titulo" class="w-full h-56 object-cover" />
-                  <div class="p-6">
-                    <h3 class="text-xl font-semibold text-yellow-500">{{ proyecto.titulo }}</h3>
-                    <p class="mt-2 text-sm text-gray-300">{{ proyecto.descripcion }}</p>
-                    <button
-                      @click="abrirModal(proyecto)"
-                      class="mt-4 inline-block text-sm font-bold text-yellow-400 hover:text-yellow-500 transition"
-                    >
-                      Ver más detalles
-                    </button>
+                <div
+                  v-for="proyecto in proyectos"
+                  :key="proyecto.id"
+                  class="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-4"
+                >
+                  <div class="bg-[#2a1b13] rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-600 transition-shadow">
+                    <img :src="proyecto.imagen" :alt="proyecto.titulo" class="w-full h-56 object-cover" />
+                    <div class="p-6">
+                      <h3 class="text-xl font-semibold text-yellow-500">{{ proyecto.titulo }}</h3>
+                      <p class="mt-2 text-sm text-gray-300">{{ proyecto.descripcion }}</p>
+                      <button
+                        @click="abrirModal(proyecto)"
+                        class="mt-4 inline-block text-sm font-bold text-yellow-400 hover:text-yellow-500 transition"
+                      >
+                        Ver más detalles
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <button
-            @click="siguiente"
-            class="absolute right-0 top-1/2 -translate-y-1/2 bg-yellow-500 hover:bg-yellow-600 text-white px-5 py-4 rounded-full z-10 text-4xl"
-          >
-            ›
-          </button>
+            <button
+              @click="siguiente"
+              class="absolute right-0 top-1/2 -translate-y-1/2 bg-yellow-500 hover:bg-yellow-600 text-white px-5 py-4 rounded-full z-10 text-4xl"
+            >
+              ›
+            </button>
+          </div>
         </div>
       </div>
     </section>
   </template>
 
   <script setup>
-  import { ref } from 'vue'
+  import { ref, onMounted, onUnmounted } from 'vue'
 
   const proyectos = ref([
     {
@@ -126,6 +134,31 @@
   const abrirModal = (proyecto) => {
     console.log('Abriendo modal para:', proyecto)
   }
+
+  // Script 1: fondo parallax móvil y desktop
+  const isMobile = ref(false)
+  const handleResize = () => {
+    isMobile.value = window.innerWidth < 768
+  }
+  onMounted(() => {
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    autoSlide()
+  })
+  onUnmounted(() => {
+    window.removeEventListener('resize', handleResize)
+  })
+
+  // Script 2: auto slide
+  function autoSlide() {
+    setInterval(() => {
+      if (proyectoActual.value < proyectos.value.length - visibleCards) {
+        proyectoActual.value++
+      } else {
+        proyectoActual.value = 0
+      }
+    }, 7000) // cada 7 segundos
+  }
   </script>
 
   <style scoped>
@@ -141,5 +174,8 @@
     .flex > * {
       min-width: 33.3333%;
     }
+  }
+  .bg-fixed {
+    background-attachment: fixed;
   }
   </style>
