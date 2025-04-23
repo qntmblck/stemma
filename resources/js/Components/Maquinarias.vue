@@ -1,53 +1,70 @@
 <template>
-    <section id="maquinarias" class="bg-[#1c120a] py-8 px-2 sm:px-4 lg:px-6 text-white w-full">
-      <!-- Texto superior -->
-      <div class="mb-10 max-w-6xl mx-auto text-center">
-        <p class="text-base sm:text-lg font-bold leading-relaxed tracking-wide">
-          Actualización constante de equipos y servicios, para responder con eficiencia y seguridad a los desafíos de la construcción moderna.
-        </p>
-      </div>
+    <section
+      id="maquinarias"
+      class="relative py-16 px-2 sm:px-4 lg:px-6 text-white w-full overflow-hidden"
+      style="background-color: #1c120a;"
+    >
+      <!-- Fondo dorado animado -->
+      <div
+        class="absolute inset-0 z-0 pointer-events-none animate-move-pattern"
+        style="
+          background-image: radial-gradient(circle at 25% 25%, #facc15 1px, transparent 1px);
+          background-size: 60px 60px;
+          opacity: 0.2;
+        "
+      ></div>
 
-      <!-- Carrusel -->
-      <div class="relative">
-        <!-- Flecha izquierda -->
-        <button
-          @click="prevSlide"
-          class="absolute -left-6 top-1/2 z-10 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white shadow rounded-full p-4 text-3xl"
-          aria-label="Anterior"
-        >
-          ‹
-        </button>
-
-        <!-- Carrusel de tarjetas -->
-        <div class="overflow-hidden">
-          <div
-            class="flex transition-transform duration-500 ease-in-out gap-4"
-            :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
-          >
-            <div
-              v-for="(chunk, i) in chunkedMaquinarias"
-              :key="i"
-              class="min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
-            >
-              <Flashcard2
-                v-for="maquina in chunk"
-                :key="maquina.nombre"
-                :title="maquina.nombre"
-                :description="maquina.descripcion"
-                :image="maquina.imagen"
-              />
-            </div>
-          </div>
+      <!-- Contenido principal -->
+      <div class="relative z-10">
+        <!-- Texto superior -->
+        <div class="mb-10 max-w-6xl mx-auto text-center">
+          <p class="text-base sm:text-lg font-bold leading-relaxed tracking-wide">
+            Actualización constante de equipos y servicios, para responder con eficiencia y seguridad a los desafíos de la construcción moderna.
+          </p>
         </div>
 
-        <!-- Flecha derecha -->
-        <button
-          @click="nextSlide"
-          class="absolute -right-6 top-1/2 z-10 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white shadow rounded-full p-4 text-3xl"
-          aria-label="Siguiente"
-        >
-          ›
-        </button>
+        <!-- Carrusel -->
+        <div class="relative">
+          <!-- Flecha izquierda -->
+          <button
+            @click="prevSlide"
+            class="absolute -left-6 top-1/2 z-10 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white shadow rounded-full p-4 text-3xl"
+            aria-label="Anterior"
+          >
+            ‹
+          </button>
+
+          <!-- Carrusel de tarjetas -->
+          <div class="overflow-hidden">
+            <div
+              class="flex transition-transform duration-500 ease-in-out gap-4"
+              :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
+            >
+              <div
+                v-for="(chunk, i) in chunkedMaquinarias"
+                :key="i"
+                class="min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+              >
+                <Flashcard2
+                  v-for="maquina in chunk"
+                  :key="maquina.nombre"
+                  :title="maquina.nombre"
+                  :description="maquina.descripcion"
+                  :image="maquina.imagen"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Flecha derecha -->
+          <button
+            @click="nextSlide"
+            class="absolute -right-6 top-1/2 z-10 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white shadow rounded-full p-4 text-3xl"
+            aria-label="Siguiente"
+          >
+            ›
+          </button>
+        </div>
       </div>
     </section>
   </template>
@@ -119,3 +136,17 @@
     if (currentSlide.value < chunkedMaquinarias.value.length - 1) currentSlide.value++
   }
   </script>
+
+  <style scoped>
+  @keyframes move-pattern {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100px 100px;
+    }
+  }
+  .animate-move-pattern {
+    animation: move-pattern 80s linear infinite;
+  }
+  </style>
