@@ -17,7 +17,7 @@
             Clientes que confían en Santa Emma
           </h2>
           <p class="mt-2 text-base sm:text-lg text-gray-600">
-            Testimonios reales de clientes que han confiado en nuestros proyectos, procesos y soluciones.
+            Clientes que han confiado en nuestros proyectos, procesos y soluciones.
           </p>
         </div>
 

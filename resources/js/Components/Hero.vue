@@ -1,13 +1,12 @@
 <template>
     <section class="relative isolate overflow-hidden bg-gray-900 h-[70vh]">
       <!-- Imagen de fondo con efecto fijo (solo en escritorio) -->
-<div
-  class="absolute inset-0 -z-10 bg-cover bg-center sm:bg-fixed"
-  :style="{ backgroundImage: `url(${image})` }"
->
-  <div class="w-full h-full bg-black/50 mix-blend-multiply"></div>
-</div>
-
+      <div
+        class="absolute inset-0 -z-10 bg-cover bg-center sm:bg-fixed"
+        :style="{ backgroundImage: `url(${image})` }"
+      >
+        <div class="w-full h-full bg-black/50 mix-blend-multiply"></div>
+      </div>
 
       <!-- Contenido alineado abajo a la izquierda -->
       <div class="flex h-full items-end">
@@ -24,7 +23,7 @@
 
           <div class="mt-8">
             <a
-              href="/"
+              href="/catalogo"
               class="inline-block border-2 border-white text-white font-semibold px-6 py-3 hover:bg-white hover:text-gray-900 transition rounded"
             >
               CATÁLOGO
