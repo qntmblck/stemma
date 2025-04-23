@@ -1,7 +1,18 @@
 <template>
-    <section class="bg-[#1c120a] py-24 sm:py-32 text-white">
-      <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <!-- Título y descripción -->
+    <section class="relative py-24 sm:py-32 text-white overflow-hidden" style="background-color: #1c120a;">
+      <!-- Fondo dorado animado -->
+      <div
+        class="absolute inset-0 z-0 pointer-events-none animate-move-pattern"
+        style="
+          background-image: radial-gradient(circle at 25% 25%, #facc15 1px, transparent 1px);
+          background-size: 60px 60px;
+          opacity: 0.2;
+        "
+      ></div>
+
+      <!-- Contenido -->
+      <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        <!-- Título -->
         <div class="mx-auto max-w-4xl text-center">
           <h2 class="text-sm font-semibold text-yellow-400 uppercase tracking-wider">Nuestro equipo</h2>
           <p class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
@@ -41,7 +52,6 @@
   <script setup>
   import { ref } from 'vue'
 
-  // Script 1: Mostrar integrantes progresivamente
   const equipo = [
     {
       nombre: 'Marcelo Oyarzún Aránguiz',
@@ -69,7 +79,7 @@
     equipoVisible.value = equipo
   }
 
-  // Script 2: Directiva personalizada para detectar intersección
+  // Directiva personalizada para intersección
   function vIntersect(el, binding) {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -88,5 +98,18 @@
   .fade-up-enter-from {
     opacity: 0;
     transform: translateY(40px);
+  }
+
+  /* Animación de fondo decorativo */
+  @keyframes move-pattern {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100px 100px;
+    }
+  }
+  .animate-move-pattern {
+    animation: move-pattern 80s linear infinite;
   }
   </style>
