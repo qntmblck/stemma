@@ -23,12 +23,14 @@
           </div>
         </div>
 
-        <!-- Cara trasera -->
+        <!-- Cara trasera (estilo header) -->
         <div
-          class="absolute inset-0 w-full h-full rotate-y-180 backface-hidden bg-white p-6 text-center flex flex-col justify-center items-center rounded-xl shadow-xl"
+          class="absolute inset-0 w-full h-full rotate-y-180 backface-hidden
+          bg-gradient-to-tr from-white via-yellow-50 to-yellow-100
+          p-6 text-center flex flex-col justify-center items-center rounded-xl shadow-xl"
         >
-          <h3 class="text-xl font-bold text-gray-800 mb-2">{{ title }}</h3>
-          <p class="text-gray-700 text-sm">{{ description }}</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">{{ title }}</h3>
+          <p class="text-gray-800 text-sm font-semibold">{{ description }}</p>
         </div>
       </div>
     </div>
