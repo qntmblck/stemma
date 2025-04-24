@@ -23,14 +23,14 @@
           </div>
         </div>
 
-        <!-- Cara trasera (estilo header) -->
+        <!-- Cara trasera (tipo ficha técnica) -->
         <div
           class="absolute inset-0 w-full h-full rotate-y-180 backface-hidden
           bg-gradient-to-tr from-white via-yellow-50 to-yellow-100
-          p-6 text-center flex flex-col justify-center items-center rounded-xl shadow-xl"
+          text-center flex flex-col justify-center items-center p-4 rounded-xl shadow-xl overflow-hidden"
         >
           <h3 class="text-xl font-bold text-gray-900 mb-2">{{ title }}</h3>
-          <p class="text-gray-800 text-sm font-semibold">{{ description }}</p>
+          <p class="text-sm text-gray-800 font-medium leading-relaxed max-w-[90%]">{{ description }}</p>
         </div>
       </div>
     </div>

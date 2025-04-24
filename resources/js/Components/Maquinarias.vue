@@ -16,16 +16,19 @@
 
       <!-- Contenido principal -->
       <div class="relative z-10">
+        <!-- Texto superior -->
         <div class="mb-10 max-w-6xl mx-auto text-center">
           <p class="text-base sm:text-lg font-bold leading-relaxed tracking-wide">
             Actualización constante de equipos y servicios, para responder con eficiencia y seguridad a los desafíos de la construcción moderna.
           </p>
         </div>
 
+        <!-- Carrusel -->
         <div class="relative">
+          <!-- Flecha izquierda -->
           <button
             @click="prevSlide"
-            class="absolute -left-6 top-1/2 z-10 transform -translate-y-1/2 text-yellow-400 hover:text-yellow-200 text-3xl"
+            class="absolute left-0 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-10 text-3xl transition"
             aria-label="Anterior"
           >‹</button>
 
@@ -55,9 +58,10 @@
             </div>
           </div>
 
+          <!-- Flecha derecha -->
           <button
             @click="nextSlide"
-            class="absolute -right-6 top-1/2 z-10 transform -translate-y-1/2 text-yellow-400 hover:text-yellow-200 text-3xl"
+            class="absolute right-0 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-10 text-3xl transition"
             aria-label="Siguiente"
           >›</button>
         </div>
@@ -66,10 +70,11 @@
   </template>
 
   <script setup>
-  import { ref, computed } from 'vue'
+  import { ref, computed, onMounted } from 'vue'
   import Flashcard2 from '@/Components/Flashcard2.vue'
 
   const currentSlide = ref(0)
+  const isMobile = ref(window.innerWidth < 768)
 
   const maquinarias = [
     { nombre: 'Camioneta Combustible GT TZ 38', imagen: '/img/maquinarias/CAMION-COMBUSTIBLE.jpg', descripcion: 'Mercedes-Benz 1016 · 4 m³ · Estanque certificado' },
@@ -90,12 +95,20 @@
     return chunked
   }
 
-  const visibleCards = ref(window.innerWidth < 768 ? 2 : 4)
+  const visibleCards = ref(isMobile.value ? 2 : 4)
+  onMounted(() => {
+    window.addEventListener('resize', () => {
+      isMobile.value = window.innerWidth < 768
+      visibleCards.value = isMobile.value ? 2 : 4
+    })
+  })
+
   const chunkedMaquinarias = computed(() => chunkArray(maquinarias, visibleCards.value))
 
   const prevSlide = () => { if (currentSlide.value > 0) currentSlide.value-- }
   const nextSlide = () => { if (currentSlide.value < chunkedMaquinarias.value.length - 1) currentSlide.value++ }
 
+  // Swipe handlers
   let startX = 0, endX = 0
   function startTouch(e) { startX = e.touches[0].clientX }
   function moveTouch(e) { endX = e.touches[0].clientX }
