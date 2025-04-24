@@ -32,7 +32,7 @@ const logout = () => {
 
     <div class="min-h-screen bg-gray-100">
       <!-- NAVIGATION BAR -->
-      <nav class="bg-white border-b border-gray-100">
+      <nav class="bg-gradient-to-br from-white to-yellow-50 border-b border-yellow-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between h-16">
             <div class="flex items-center">
@@ -42,7 +42,7 @@ const logout = () => {
 
               <div class="hidden sm:flex sm:ms-10 space-x-8">
                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                  Dashboard
+                  Panel de Usuario
                 </NavLink>
               </div>
             </div>
@@ -98,14 +98,15 @@ const logout = () => {
                   </span>
                 </template>
                 <template #content>
-                  <div class="block px-4 py-2 text-xs text-gray-400">Manage Account</div>
-                  <DropdownLink :href="route('profile.show')">Profile</DropdownLink>
-                  <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">API Tokens</DropdownLink>
-                  <div class="border-t border-gray-200 my-2" />
-                  <form @submit.prevent="logout">
-                    <DropdownLink as="button">Log Out</DropdownLink>
-                  </form>
-                </template>
+  <div class="block px-4 py-2 text-xs text-gray-400">Gestionar cuenta</div>
+  <DropdownLink :href="route('profile.show')">Perfil</DropdownLink>
+  <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">Tokens de API</DropdownLink>
+  <div class="border-t border-gray-200 my-2" />
+  <form @submit.prevent="logout">
+    <DropdownLink as="button">Cerrar sesión</DropdownLink>
+  </form>
+</template>
+
               </Dropdown>
             </div>
 

@@ -30,14 +30,7 @@ onMounted(() => {
 
 <template>
   <AppLayout title="Panel de Usuario">
-    <template #header>
-      <h2
-        class="font-bold text-3xl transition duration-700"
-        :class="highlightTitle ? 'text-[#eab308]' : 'text-gray-700'"
-      >
-       Panel de Usuario
-      </h2>
-    </template>
+
 
     <div class="py-12 bg-[#1c120a] min-h-screen">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-12">
