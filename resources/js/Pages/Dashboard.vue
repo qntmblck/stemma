@@ -35,7 +35,7 @@ onMounted(() => {
         class="font-bold text-3xl transition duration-700"
         :class="highlightTitle ? 'text-[#eab308]' : 'text-gray-700'"
       >
-        Bienvenido al Panel de Usuario
+       Panel de Usuario
       </h2>
     </template>
 

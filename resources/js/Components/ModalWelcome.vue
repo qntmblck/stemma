@@ -2,26 +2,27 @@
     <transition name="slide-up">
       <div
         v-if="showModal"
-        class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center px-4"
+        class="fixed inset-0 z-[1000] bg-black/70 flex items-center justify-center px-2 sm:px-4"
+        @click.self="closeModal"
       >
         <div
-          class="relative bg-yellow-400 text-center text-gray-900 rounded-xl p-10 sm:p-12 max-w-3xl w-full shadow-2xl"
+          class="relative bg-yellow-400 text-center text-gray-900 rounded-xl p-6 sm:p-10 max-w-xl w-full shadow-2xl overflow-y-auto max-h-[90vh]"
         >
           <!-- Botón de cerrar -->
           <button
             @click="closeModal"
-            class="absolute top-4 right-4 text-2xl font-bold text-gray-800 hover:text-gray-600"
+            class="absolute top-3 right-3 text-3xl font-bold text-gray-800 hover:text-gray-600 focus:outline-none"
           >
             &times;
           </button>
 
-          <h2 class="text-3xl font-extrabold mb-4">NUESTRO COMPROMISO</h2>
+          <h2 class="text-2xl sm:text-3xl font-extrabold mb-4">NUESTRO COMPROMISO</h2>
 
-          <img src="/stemma.png" alt="Logo Santa Emma" class="mx-auto h-32 sm:h-32 mb-8" />
+          <img src="/stemma.png" alt="Logo Santa Emma" class="mx-auto h-28 sm:h-32 mb-6" />
 
-          <h3 class="text-xl font-semibold mt-2">MARCELO OYARZUN ARANGUIZ</h3>
+          <h3 class="text-lg sm:text-xl font-semibold mt-2">MARCELO OYARZUN ARANGUIZ</h3>
 
-          <p class="mt-4 text-gray-800 text-base sm:text-lg">
+          <p class="mt-4 text-gray-800 text-sm sm:text-base">
             Le doy la bienvenida a Constructora Santa Emma. Somos una empresa comprometida en cada uno de nuestros proyectos en ejecución.
           </p>
         </div>
@@ -38,7 +39,6 @@
     showModal.value = false
   }
 
-  // Mostrar SIEMPRE al cargar la página
   onMounted(() => {
     showModal.value = true
   })

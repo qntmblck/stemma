@@ -14,8 +14,8 @@
           </thead>
           <tbody>
             <tr v-for="(item, index) in servicios" :key="index" class="border-b">
-              <td class="px-6 py-4">{{ item.concepto }}</td>
-              <td class="px-6 py-4">{{ item.monto }}</td>
+              <td class="px-6 py-4 font-medium" :class="{ 'bg-yellow-50 font-bold': item.destacado }">{{ item.concepto }}</td>
+              <td class="px-6 py-4" :class="{ 'bg-yellow-50 font-bold': item.destacado }">{{ item.monto }}</td>
             </tr>
           </tbody>
         </table>
@@ -26,10 +26,12 @@
   <script setup>
   const servicios = [
     { concepto: 'Conexión a base de datos', monto: '$100.000' },
-    { concepto: 'Login con roles (dos admin/user)', monto: '$120.000' },
-    { concepto: 'Dashboard visual rol usuario', monto: '$150.000' },
-    { concepto: 'Panel de rol administración', monto: '$180.000' },
-    { concepto: 'Gestión de nuevo rol + dashboard', monto: '$270.000 – $300.000' },
+    { concepto: 'Login con dos roles (admin/user)', monto: '$120.000' },
+    { concepto: 'Dashboard  rol usuario', monto: '$150.000' },
+    { concepto: 'Panel rol administrador', monto: '$180.000' },
+    { concepto: 'Costo total con dos roles Sin Mantención', monto: '$550.000', destacado: true },
+    { concepto: 'Gestión de nuevo rol + nuevo dashboard', monto: '$270.000 – $300.000' },
+    { concepto: 'Mantención Anual Categoría 2', monto: '$200.000' },
   ];
   </script>
 

@@ -16,7 +16,7 @@
           <tbody>
             <tr class="border-b">
               <td class="px-6 py-4">🔴 Landing page básica</td>
-              <td class="px-6 py-4 line-through">$250.000</td>
+              <td class="px-6 py-4 line-through text-red-500">$250.000</td>
               <td class="px-6 py-4 font-bold text-green-600">$150.000</td>
             </tr>
             <tr class="border-b" v-for="(item, index) in adicionales" :key="index">
@@ -24,15 +24,15 @@
               <td class="px-6 py-4">{{ item.monto }}</td>
               <td class="px-6 py-4 text-yellow-600">🟡 {{ item.monto }} <span class="italic">(por aceptar)</span></td>
             </tr>
-            <tr class="bg-gray-100 font-semibold">
-              <td class="px-6 py-4">Total sin mantención</td>
+            <tr class="bg-yellow-50 font-semibold border-t">
+              <td class="px-6 py-4">🧾 Total sin mantención</td>
               <td class="px-6 py-4">$520.000</td>
               <td class="px-6 py-4">$150.000 + $270.000 por aceptar</td>
             </tr>
-            <tr class="bg-red-50">
-              <td class="px-6 py-4">🔴 Mantención anual</td>
-              <td class="px-6 py-4 line-through">$120.000</td>
-              <td class="px-6 py-4 font-bold text-green-600">$100.000</td>
+            <tr class="border-b">
+              <td class="px-6 py-4">🔴 Mantención Anual Categoría 1</td>
+              <td class="px-6 py-4 line-through text-red-500">$120.000</td>
+              <td class="px-6 py-4 text-green-600 font-bold">$100.000</td>
             </tr>
           </tbody>
         </table>
@@ -49,7 +49,7 @@
     { concepto: 'Formulario de contacto funcional', monto: '$40.000' },
     { concepto: 'Correo corporativo anual: cuenta gerencial', monto: '$30.000' },
     { concepto: 'Correo corporativo anual: cuenta administrativa adicional', monto: '$10.000' },
-    { concepto: 'Botón flotante de WhatsApp para atención directa', monto: '$60.000' }
+    { concepto: 'Botón flotante de WhatsApp para atención directa', monto: '$60.000' },
   ];
   </script>
 
