@@ -6,7 +6,7 @@ import { Link } from '@inertiajs/vue3';
     <Link :href="'/'">
         <a href="/" class="flex items-center space-x-2">
             <img
-              src="/stemma1.png?=v2"
+              src="/stemma1.png?=v3"
               alt="Logo Santa Emma"
               class="h-24 lg:h-24 w-auto drop-shadow-lg transition-all duration-300"
             />

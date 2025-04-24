@@ -33,8 +33,7 @@
 
         <!-- Botones Escritorio -->
         <div class="hidden lg:flex items-center gap-x-4">
-          <a :href="route('login')" class="text-sm font-bold text-gray-800 hover:text-yellow-600 transition">Ingresar</a>
-          <a :href="route('register')" class="rounded-md bg-yellow-500 px-3 py-2 text-sm font-bold text-white hover:bg-yellow-600 transition">Registrar</a>
+          <a :href="route('login')" class="rounded-md bg-yellow-500 px-2 py-2 text-sm font-bold text-white hover:bg-yellow-600 transition">Ingresar</a>
         </div>
 
         <!-- Botón Menú Móvil -->
@@ -65,8 +64,7 @@
         <a :href="route('catalogo')" class="block text-sm font-bold hover:text-yellow-600 transition">Catálogo</a>
         <a :href="route('contacto')" class="block text-sm font-bold hover:text-yellow-600 transition">Contacto</a>
         <hr class="my-2 border-yellow-200" />
-        <a :href="route('login')" class="block text-sm font-bold hover:text-yellow-600 transition">Ingresar</a>
-        <a :href="route('register')" class="block text-sm font-bold text-yellow-700 hover:text-yellow-800 transition">Registrar</a>
+        <a :href="route('login')" class="block text-sm font-bold text-yellow-700 hover:text-yellow-800 transition">Ingresar</a>
       </div>
     </header>
   </template>
