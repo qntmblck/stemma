@@ -16,26 +16,25 @@
 
       <!-- Contenido principal -->
       <div class="relative z-10">
-        <!-- Texto superior -->
         <div class="mb-10 max-w-6xl mx-auto text-center">
           <p class="text-base sm:text-lg font-bold leading-relaxed tracking-wide">
             Actualización constante de equipos y servicios, para responder con eficiencia y seguridad a los desafíos de la construcción moderna.
           </p>
         </div>
 
-        <!-- Carrusel -->
         <div class="relative">
-          <!-- Flecha izquierda -->
           <button
             @click="prevSlide"
-            class="absolute -left-6 top-1/2 z-10 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white shadow rounded-full p-4 text-3xl"
+            class="absolute -left-6 top-1/2 z-10 transform -translate-y-1/2 text-yellow-400 hover:text-yellow-200 text-3xl"
             aria-label="Anterior"
-          >
-            ‹
-          </button>
+          >‹</button>
 
-          <!-- Carrusel de tarjetas -->
-          <div class="overflow-hidden">
+          <div
+            class="overflow-hidden"
+            @touchstart="startTouch"
+            @touchmove="moveTouch"
+            @touchend="endTouch"
+          >
             <div
               class="flex transition-transform duration-500 ease-in-out gap-4"
               :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
@@ -56,14 +55,11 @@
             </div>
           </div>
 
-          <!-- Flecha derecha -->
           <button
             @click="nextSlide"
-            class="absolute -right-6 top-1/2 z-10 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white shadow rounded-full p-4 text-3xl"
+            class="absolute -right-6 top-1/2 z-10 transform -translate-y-1/2 text-yellow-400 hover:text-yellow-200 text-3xl"
             aria-label="Siguiente"
-          >
-            ›
-          </button>
+          >›</button>
         </div>
       </div>
     </section>
@@ -76,46 +72,14 @@
   const currentSlide = ref(0)
 
   const maquinarias = [
-    {
-      nombre: 'Camioneta Combustible GT TZ 38',
-      imagen: '/img/maquinarias/CAMION-COMBUSTIBLE.jpg',
-      descripcion: 'Mercedes-Benz 1016 · Capacidad 4 m³ · Transporte de combustible con estanque certificado.',
-    },
-    {
-      nombre: 'Camion Tolva LT HV 83',
-      imagen: '/img/maquinarias/camiontolva.jpg',
-      descripcion: 'Capacidad 14 m³ · Motor Euro 5 · Ideal para transporte de material granular.',
-    },
-    {
-      nombre: 'Cargador Frontal SEM 656D',
-      imagen: '/img/maquinarias/cargadorfrontal.jpg',
-      descripcion: 'Capacidad 3 m³ · Motor Weichai · Alta eficiencia para movimientos de tierra.',
-    },
-    {
-      nombre: 'Chancadora Powerscreen Trakpactor',
-      imagen: '/img/maquinarias/chancacadora.jpg',
-      descripcion: 'Planta móvil impactadora · Alta capacidad de trituración para diversos tipos de roca.',
-    },
-    {
-      nombre: 'Excavadora Sunward SWE210',
-      imagen: '/img/maquinarias/excavadora.jpg',
-      descripcion: 'Motor Isuzu 6BG1 · Peso operativo 21 ton · Ideal para excavaciones profundas.',
-    },
-    {
-      nombre: 'Motoniveladora 670G John Deere',
-      imagen: '/img/maquinarias/MOTONIVELADORA2.jpg',
-      descripcion: 'Motor John Deere 6.8L · Cuchilla de 3.66 m · Precisión en nivelación de terreno.',
-    },
-    {
-      nombre: 'Rodillo Compactador CS-533E',
-      imagen: '/img/maquinarias/rollocompactador.png',
-      descripcion: 'Compactador vibratorio · Rueda lisa · Ideal para subbases y asfaltos.',
-    },
-    {
-      nombre: 'Planta Seleccionadora de Áridos',
-      imagen: '/img/maquinarias/seleccionadoraridos.jpg',
-      descripcion: 'Clasificación de material por granulometría · Transportadores y cribas vibradoras integradas.',
-    },
+    { nombre: 'Camioneta Combustible GT TZ 38', imagen: '/img/maquinarias/CAMION-COMBUSTIBLE.jpg', descripcion: 'Mercedes-Benz 1016 · 4 m³ · Estanque certificado' },
+    { nombre: 'Camión Tolva LT HV 83', imagen: '/img/maquinarias/camiontolva.jpg', descripcion: '14 m³ · Motor Euro 5 · Para materiales granulares' },
+    { nombre: 'Cargador Frontal SEM 656D', imagen: '/img/maquinarias/cargadorfrontal.jpg', descripcion: 'Balde 3 m³ · Motor Weichai · Eficiente en movimiento de tierra' },
+    { nombre: 'Chancadora Trakpactor', imagen: '/img/maquinarias/chancacadora.jpg', descripcion: 'Planta móvil · Alta capacidad de trituración' },
+    { nombre: 'Excavadora Sunward SWE210', imagen: '/img/maquinarias/excavadora.jpg', descripcion: 'Motor Isuzu · 21 toneladas · Excavación profunda' },
+    { nombre: 'Motoniveladora JD 670G', imagen: '/img/maquinarias/MOTONIVELADORA2.jpg', descripcion: 'Cuchilla 3.66 m · Motor John Deere 6.8L' },
+    { nombre: 'Rodillo CS-533E', imagen: '/img/maquinarias/rollocompactador.png', descripcion: 'Compactador vibratorio · Rueda lisa' },
+    { nombre: 'Planta Seleccionadora', imagen: '/img/maquinarias/seleccionadoraridos.jpg', descripcion: 'Granulometría variable · Cribas y cintas integradas' },
   ]
 
   const chunkArray = (array, size) => {
@@ -126,25 +90,29 @@
     return chunked
   }
 
-  const chunkedMaquinarias = computed(() => chunkArray(maquinarias, 4))
+  const visibleCards = ref(window.innerWidth < 768 ? 2 : 4)
+  const chunkedMaquinarias = computed(() => chunkArray(maquinarias, visibleCards.value))
 
-  function prevSlide() {
-    if (currentSlide.value > 0) currentSlide.value--
-  }
+  const prevSlide = () => { if (currentSlide.value > 0) currentSlide.value-- }
+  const nextSlide = () => { if (currentSlide.value < chunkedMaquinarias.value.length - 1) currentSlide.value++ }
 
-  function nextSlide() {
-    if (currentSlide.value < chunkedMaquinarias.value.length - 1) currentSlide.value++
+  let startX = 0, endX = 0
+  function startTouch(e) { startX = e.touches[0].clientX }
+  function moveTouch(e) { endX = e.touches[0].clientX }
+  function endTouch() {
+    const threshold = 50
+    const deltaX = endX - startX
+    if (deltaX > threshold) prevSlide()
+    else if (deltaX < -threshold) nextSlide()
+    startX = 0
+    endX = 0
   }
   </script>
 
   <style scoped>
   @keyframes move-pattern {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 100px 100px;
-    }
+    0% { background-position: 0 0; }
+    100% { background-position: 100px 100px; }
   }
   .animate-move-pattern {
     animation: move-pattern 80s linear infinite;
