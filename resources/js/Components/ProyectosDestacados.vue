@@ -4,13 +4,12 @@
       class="relative isolate py-20 px-6 sm:px-8 lg:px-12 text-white"
     >
       <!-- Fondo fijo solo en desktop -->
-<div
-  class="absolute inset-0 -z-10 bg-cover bg-center sm:bg-fixed"
-  style="background-image: url('/img/h2.jpg')"
->
-  <div class="w-full h-full bg-black/70 mix-blend-multiply"></div>
-</div>
-
+      <div
+        class="absolute inset-0 -z-10 bg-cover bg-center sm:bg-fixed"
+        style="background-image: url('/img/h2.jpg')"
+      >
+        <div class="w-full h-full bg-black/70 mix-blend-multiply"></div>
+      </div>
 
       <div class="max-w-7xl mx-auto">
         <!-- Título -->
@@ -25,51 +24,59 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <!-- Carousel -->
           <div class="relative">
-            <div class="overflow-hidden rounded-xl shadow-xl">
-              <img :src="images[currentImage]" class="w-full h-[460px] object-cover transition-all duration-500" />
+            <div
+              class="overflow-hidden rounded-xl shadow-xl"
+              @touchstart="startTouch"
+              @touchmove="moveTouch"
+              @touchend="endTouch"
+            >
+              <img
+                :src="images[currentImage]"
+                class="w-full h-[460px] object-cover transition-all duration-500"
+              />
             </div>
 
-            <!-- Controles -->
+            <!-- Flechas -->
             <button
               @click="prevImage"
-              class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white p-3 text-xl font-bold rounded-r"
+              class="absolute left-0 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-10 text-3xl transition"
+              aria-label="Anterior"
             >
               ‹
             </button>
             <button
               @click="nextImage"
-              class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 text-white p-3 text-xl font-bold rounded-l"
+              class="absolute right-0 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-10 text-3xl transition"
+              aria-label="Siguiente"
             >
               ›
             </button>
           </div>
 
-        <!-- Descripción -->
-<div class="flex flex-col items-center justify-center text-center h-full">
-  <h3 class="text-3xl font-semibold text-white">Parque Eólico Puelche Sur</h3>
-  <p class="mt-4 text-gray-300 max-w-xl">
-    Proyecto desarrollado en la Región de Los Lagos con una capacidad instalada de 165 MW, contribuyendo a la matriz energética renovable de Chile. Santa Emma ejecutó fundaciones para torres eólicas y obras anexas.
-  </p>
-  <p class="mt-4 text-gray-300 max-w-xl">
-    Se destaca el cumplimiento de plazos, respeto por el entorno natural y colaboración con empresas internacionales del sector energético.
-  </p>
-  <ul class="mt-6 list-disc list-inside text-gray-200 text-left max-w-xl">
-    <li>+50 fundaciones ejecutadas</li>
-    <li>Conexión vial de 12 km de caminos estabilizados</li>
-    <li>Impacto directo en comunidades rurales aledañas</li>
-  </ul>
+          <!-- Descripción -->
+          <div class="flex flex-col items-center justify-center text-center h-full">
+            <h3 class="text-3xl font-semibold text-white">Parque Eólico Puelche Sur</h3>
+            <p class="mt-4 text-gray-300 max-w-xl">
+              Proyecto desarrollado en la Región de Los Lagos con una capacidad instalada de 165 MW, contribuyendo a la matriz energética renovable de Chile. Santa Emma ejecutó fundaciones para torres eólicas y obras anexas.
+            </p>
+            <p class="mt-4 text-gray-300 max-w-xl">
+              Se destaca el cumplimiento de plazos, respeto por el entorno natural y colaboración con empresas internacionales del sector energético.
+            </p>
+            <ul class="mt-6 list-disc list-inside text-gray-200 text-left max-w-xl">
+              <li>+50 fundaciones ejecutadas</li>
+              <li>Conexión vial de 12 km de caminos estabilizados</li>
+              <li>Impacto directo en comunidades rurales aledañas</li>
+            </ul>
 
-  <div class="mt-8">
-    <a
-      href="/proyectos"
-      class="inline-block rounded-md bg-yellow-500 px-5 py-3 text-white font-semibold hover:bg-yellow-400 transition"
-    >
-      Conoce nuestros Proyectos
-    </a>
-  </div>
-</div>
-
-
+            <div class="mt-8">
+              <a
+                href="/proyectos"
+                class="inline-block rounded-md bg-yellow-500 px-5 py-3 text-white font-semibold hover:bg-yellow-400 transition"
+              >
+                Conoce nuestros Proyectos
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -90,9 +97,25 @@
   function nextImage() {
     currentImage.value = (currentImage.value + 1) % images.length
   }
-
   function prevImage() {
-    currentImage.value =
-      (currentImage.value - 1 + images.length) % images.length
+    currentImage.value = (currentImage.value - 1 + images.length) % images.length
+  }
+
+  // Swipe mobile
+  let startX = 0
+  let endX = 0
+  function startTouch(e) {
+    startX = e.touches[0].clientX
+  }
+  function moveTouch(e) {
+    endX = e.touches[0].clientX
+  }
+  function endTouch() {
+    const diff = startX - endX
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? nextImage() : prevImage()
+    }
+    startX = 0
+    endX = 0
   }
   </script>

@@ -23,27 +23,36 @@
           </div>
         </div>
 
-        <!-- Cara trasera (tipo ficha técnica) -->
+        <!-- Cara trasera -->
         <div
           class="absolute inset-0 w-full h-full rotate-y-180 backface-hidden
           bg-gradient-to-tr from-white via-yellow-50 to-yellow-100
-          text-center flex flex-col justify-center items-center p-4 rounded-xl shadow-xl overflow-hidden"
+          p-6 text-left flex flex-col justify-center items-start rounded-xl shadow-xl"
         >
-          <h3 class="text-xl font-bold text-gray-900 mb-2">{{ title }}</h3>
-          <p class="text-sm text-gray-800 font-medium leading-relaxed max-w-[90%]">{{ description }}</p>
+          <h3 class="text-lg font-bold text-gray-900 mb-3">{{ title }}</h3>
+          <ul class="text-sm text-gray-800 space-y-1 font-semibold list-disc list-inside">
+            <li v-for="(item, index) in descriptionList" :key="index">
+              {{ item }}
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </template>
 
   <script setup>
-  import { ref } from 'vue'
+  import { ref, computed } from 'vue'
 
-  defineProps({
+  const props = defineProps({
     title: String,
     description: String,
     image: String,
   })
+
+  // Divide la descripción en ítems por salto de línea
+  const descriptionList = computed(() =>
+    props.description?.split('\n').filter((item) => item.trim() !== '')
+  )
 
   const flipped = ref(false)
   </script>

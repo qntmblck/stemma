@@ -25,7 +25,6 @@
 
         <!-- Carrusel -->
         <div class="relative">
-          <!-- Flecha izquierda -->
           <button
             @click="prevSlide"
             class="absolute left-0 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-10 text-3xl transition"
@@ -58,7 +57,6 @@
             </div>
           </div>
 
-          <!-- Flecha derecha -->
           <button
             @click="nextSlide"
             class="absolute right-0 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-10 text-3xl transition"
@@ -77,14 +75,70 @@
   const isMobile = ref(window.innerWidth < 768)
 
   const maquinarias = [
-    { nombre: 'Camioneta Combustible GT TZ 38', imagen: '/img/maquinarias/CAMION-COMBUSTIBLE.jpg', descripcion: 'Mercedes-Benz 1016 · 4 m³ · Estanque certificado' },
-    { nombre: 'Camión Tolva LT HV 83', imagen: '/img/maquinarias/camiontolva.jpg', descripcion: '14 m³ · Motor Euro 5 · Para materiales granulares' },
-    { nombre: 'Cargador Frontal SEM 656D', imagen: '/img/maquinarias/cargadorfrontal.jpg', descripcion: 'Balde 3 m³ · Motor Weichai · Eficiente en movimiento de tierra' },
-    { nombre: 'Chancadora Trakpactor', imagen: '/img/maquinarias/chancacadora.jpg', descripcion: 'Planta móvil · Alta capacidad de trituración' },
-    { nombre: 'Excavadora Sunward SWE210', imagen: '/img/maquinarias/excavadora.jpg', descripcion: 'Motor Isuzu · 21 toneladas · Excavación profunda' },
-    { nombre: 'Motoniveladora JD 670G', imagen: '/img/maquinarias/MOTONIVELADORA2.jpg', descripcion: 'Cuchilla 3.66 m · Motor John Deere 6.8L' },
-    { nombre: 'Rodillo CS-533E', imagen: '/img/maquinarias/rollocompactador.png', descripcion: 'Compactador vibratorio · Rueda lisa' },
-    { nombre: 'Planta Seleccionadora', imagen: '/img/maquinarias/seleccionadoraridos.jpg', descripcion: 'Granulometría variable · Cribas y cintas integradas' },
+    {
+      nombre: 'Camioneta Combustible GT TZ 38',
+      imagen: '/img/maquinarias/CAMION-COMBUSTIBLE.jpg',
+      descripcion: `Marca: Mercedes-Benz 1016
+  Capacidad: 4 m³
+  Estanque: Homologado
+  Uso: Transporte de combustible`
+    },
+    {
+      nombre: 'Camión Tolva LT HV 83',
+      imagen: '/img/maquinarias/camiontolva.jpg',
+      descripcion: `Capacidad: 14 m³
+  Motor: Euro 5
+  Uso: Materiales granulares
+  Tracción: 6x4`
+    },
+    {
+      nombre: 'Cargador Frontal SEM 656D',
+      imagen: '/img/maquinarias/cargadorfrontal.jpg',
+      descripcion: `Capacidad: Balde 3 m³
+  Motor: Weichai
+  Aplicación: Movimiento de tierra
+  Peso operativo: 17 toneladas`
+    },
+    {
+      nombre: 'Chancadora Trakpactor',
+      imagen: '/img/maquinarias/chancacadora.jpg',
+      descripcion: `Tipo: Planta impactadora móvil
+  Marca: Powerscreen
+  Capacidad: Alta producción
+  Uso: Trituración de roca`
+    },
+    {
+      nombre: 'Excavadora Sunward SWE210',
+      imagen: '/img/maquinarias/excavadora.jpg',
+      descripcion: `Motor: Isuzu 6BG1
+  Peso: 21 toneladas
+  Profundidad: Excavación profunda
+  Orugas: Acero`
+    },
+    {
+      nombre: 'Motoniveladora JD 670G',
+      imagen: '/img/maquinarias/MOTONIVELADORA2.jpg',
+      descripcion: `Motor: John Deere 6.8L
+  Cuchilla: 3.66 m
+  Potencia: 185 hp
+  Tracción: AWD opcional`
+    },
+    {
+      nombre: 'Rodillo Compactador CS-533E',
+      imagen: '/img/maquinarias/rollocompactador.png',
+      descripcion: `Tipo: Compactador vibratorio
+  Marca: CAT
+  Aplicación: Subbases y asfaltos
+  Rueda: Lisa`
+    },
+    {
+      nombre: 'Planta Seleccionadora de Áridos',
+      imagen: '/img/maquinarias/seleccionadoraridos.jpg',
+      descripcion: `Tipo: Planta seleccionadora
+  Sistema: Cribas vibratorias
+  Transportadores: Integrados
+  Aplicación: Granulometría variable`
+    },
   ]
 
   const chunkArray = (array, size) => {
@@ -96,6 +150,7 @@
   }
 
   const visibleCards = ref(isMobile.value ? 2 : 4)
+
   onMounted(() => {
     window.addEventListener('resize', () => {
       isMobile.value = window.innerWidth < 768
@@ -108,7 +163,6 @@
   const prevSlide = () => { if (currentSlide.value > 0) currentSlide.value-- }
   const nextSlide = () => { if (currentSlide.value < chunkedMaquinarias.value.length - 1) currentSlide.value++ }
 
-  // Swipe handlers
   let startX = 0, endX = 0
   function startTouch(e) { startX = e.touches[0].clientX }
   function moveTouch(e) { endX = e.touches[0].clientX }
