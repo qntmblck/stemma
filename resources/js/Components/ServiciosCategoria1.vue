@@ -15,7 +15,7 @@
           </thead>
           <tbody>
             <tr class="border-b">
-              <td class="px-6 py-4">🔴 Landing page básica</td>
+              <td class="px-6 py-4">🔴 Landing page básica (Diseño y Contenido de 6 Secciones dinámicas en Versión Móbil y Escritorio)</td>
               <td class="px-6 py-4 line-through text-red-500">$250.000</td>
               <td class="px-6 py-4 font-bold text-green-600">$150.000</td>
             </tr>
