@@ -10,7 +10,7 @@
             <tr>
               <th scope="col" class="px-6 py-3">Concepto</th>
               <th scope="col" class="px-6 py-3">Monto CLP</th>
-              <th scope="col" class="px-6 py-3">Pagado</th>
+              <th scope="col" class="px-6 py-3">Pactado</th>
             </tr>
           </thead>
           <tbody>
@@ -27,7 +27,7 @@
             <tr class="bg-yellow-50 font-semibold border-t">
               <td class="px-6 py-4">🧾 Total sin mantención</td>
               <td class="px-6 py-4">$520.000</td>
-              <td class="px-6 py-4">$150.000 + $270.000 por aceptar</td>
+              <td class="px-6 py-4">$420.000 ($150.000 + $270.000 por aceptar)</td>
             </tr>
             <tr class="border-b">
               <td class="px-6 py-4">🔴 Mantención Anual Categoría 1</td>
