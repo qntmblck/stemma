@@ -23,7 +23,7 @@
 
           <div class="mt-8">
             <a
-              href="/catalogo"
+              href="/"
               class="inline-block border-2 border-white text-white font-semibold px-6 py-3 hover:bg-white hover:text-gray-900 transition rounded"
             >
               CATÁLOGO

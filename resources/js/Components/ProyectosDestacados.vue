@@ -70,7 +70,7 @@
 
             <div class="mt-8">
               <a
-                href="/proyectos"
+                href="/"
                 class="inline-block rounded-md bg-yellow-500 px-5 py-3 text-white font-semibold hover:bg-yellow-400 transition"
               >
                 Conoce nuestros Proyectos

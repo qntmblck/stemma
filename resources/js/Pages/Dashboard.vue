@@ -32,11 +32,10 @@ onMounted(() => {
   <AppLayout title="Panel de Usuario">
 
 
-    <div class="py-12 bg-[#1c120a] min-h-screen">
+    <div class="py-6 bg-[#1c120a] min-h-screen">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-12">
 
         <div class="text-center text-white">
-          <p class="text-lg">Conoce nuestros servicios disponibles y sus valores</p>
           <p v-if="showInfoOnScroll" class="text-yellow-400 mt-2 transition-opacity duration-500">Desliza para descubrir más detalles</p>
         </div>
 
