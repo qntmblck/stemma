@@ -15,7 +15,7 @@
           </thead>
           <tbody>
             <tr class="border-b">
-              <td class="px-6 py-4">🔴 Landing page básica (Diseño y Contenido de 6 Secciones dinámicas en Versión Móbil y Escritorio)</td>
+              <td class="px-6 py-4">🔴 Landing page básica (Diseño y Contenido de 5-6 Secciones dinámicas en Versión Móbil y Escritorio)</td>
               <td class="px-6 py-4 line-through text-red-500">$250.000</td>
               <td class="px-6 py-4 font-bold text-green-600">$150.000</td>
             </tr>
@@ -42,10 +42,10 @@
 
   <script setup>
   const adicionales = [
-    { concepto: 'Sección adicional: Nosotros', monto: '$30.000' },
-    { concepto: 'Sección adicional: Proyectos', monto: '$30.000' },
-    { concepto: 'Sección adicional: Catálogo', monto: '$30.000' },
-    { concepto: 'Sección adicional: Contacto', monto: '$30.000' },
+    { concepto: 'Página adicional: Nosotros', monto: '$30.000' },
+    { concepto: 'Página adicional: Proyectos', monto: '$30.000' },
+    { concepto: 'Página adicional: Catálogo', monto: '$30.000' },
+    { concepto: 'Página adicional: Contacto', monto: '$30.000' },
     { concepto: 'Formulario de contacto/cotización con envío de correo automatico', monto: '$40.000' },
     { concepto: 'Correo corporativo anual: cuenta gerencial', monto: '$30.000' },
     { concepto: 'Correo corporativo anual: cuenta administrativa adicional', monto: '$10.000' },

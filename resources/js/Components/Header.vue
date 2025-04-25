@@ -1,6 +1,6 @@
 <template>
     <header
-  class="fixed top-0 left-0 right-0 z-50 w-full
+  class="fixed top-0 left-0 right-0 z-30 w-full
     bg-gradient-to-tr from-white via-yellow-50 to-yellow-100
     shadow-md transition-all duration-300
     rounded-b-md mt-0.5"
