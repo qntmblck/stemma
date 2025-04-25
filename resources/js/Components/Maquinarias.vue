@@ -26,6 +26,7 @@
         <!-- Carrusel -->
         <div class="relative">
           <button
+            v-if="isMobile"
             @click="prevSlide"
             class="absolute left-0 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-10 text-3xl transition"
             aria-label="Anterior"
@@ -39,15 +40,31 @@
           >
             <div
               class="flex transition-transform duration-500 ease-in-out gap-4"
-              :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
+              :style="{ transform: isMobile ? `translateX(-${currentSlide * 100}%)` : 'none' }"
             >
+              <!-- Carrusel Mobile -->
               <div
+                v-if="isMobile"
                 v-for="(chunk, i) in chunkedMaquinarias"
                 :key="i"
-                class="min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+                class="min-w-full grid grid-cols-2 grid-rows-2 gap-4"
               >
                 <Flashcard2
                   v-for="maquina in chunk"
+                  :key="maquina.nombre"
+                  :title="maquina.nombre"
+                  :description="maquina.descripcion"
+                  :image="maquina.imagen"
+                />
+              </div>
+
+              <!-- Grid Escritorio -->
+              <div
+                v-else
+                class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-4"
+              >
+                <Flashcard2
+                  v-for="maquina in maquinarias"
                   :key="maquina.nombre"
                   :title="maquina.nombre"
                   :description="maquina.descripcion"
@@ -58,6 +75,7 @@
           </div>
 
           <button
+            v-if="isMobile"
             @click="nextSlide"
             class="absolute right-0 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-10 text-3xl transition"
             aria-label="Siguiente"
@@ -72,75 +90,52 @@
   import Flashcard2 from '@/Components/Flashcard2.vue'
 
   const currentSlide = ref(0)
-  const isMobile = ref(window.innerWidth < 768)
+  const isMobile = ref(window.innerWidth < 1024) // Ahora tomamos mobile/tablet (hasta 1024px)
 
   const maquinarias = [
     {
       nombre: 'Camioneta Combustible GT TZ 38',
       imagen: '/img/maquinarias/CAMION-COMBUSTIBLE.jpg',
-      descripcion: `Marca: Mercedes-Benz 1016
-  Capacidad: 4 m³
-  Estanque: Homologado
-  Uso: Transporte de combustible`
+      descripcion: `Marca: Mercedes-Benz 1016\nCapacidad: 4 m³\nEstanque: Homologado\nUso: Transporte de combustible`
     },
     {
       nombre: 'Camión Tolva LT HV 83',
       imagen: '/img/maquinarias/camiontolva.jpg',
-      descripcion: `Capacidad: 14 m³
-  Motor: Euro 5
-  Uso: Materiales granulares
-  Tracción: 6x4`
+      descripcion: `Capacidad: 14 m³\nMotor: Euro 5\nUso: Materiales granulares\nTracción: 6x4`
     },
     {
       nombre: 'Cargador Frontal SEM 656D',
       imagen: '/img/maquinarias/cargadorfrontal.jpg',
-      descripcion: `Capacidad: Balde 3 m³
-  Motor: Weichai
-  Aplicación: Movimiento de tierra
-  Peso operativo: 17 toneladas`
+      descripcion: `Capacidad: Balde 3 m³\nMotor: Weichai\nAplicación: Movimiento de tierra\nPeso operativo: 17 toneladas`
     },
     {
       nombre: 'Chancadora Trakpactor',
       imagen: '/img/maquinarias/chancacadora.jpg',
-      descripcion: `Tipo: Planta impactadora móvil
-  Marca: Powerscreen
-  Capacidad: Alta producción
-  Uso: Trituración de roca`
+      descripcion: `Tipo: Planta impactadora móvil\nMarca: Powerscreen\nCapacidad: Alta producción\nUso: Trituración de roca`
     },
     {
       nombre: 'Excavadora Sunward SWE210',
       imagen: '/img/maquinarias/excavadora.jpg',
-      descripcion: `Motor: Isuzu 6BG1
-  Peso: 21 toneladas
-  Profundidad: Excavación profunda
-  Orugas: Acero`
+      descripcion: `Motor: Isuzu 6BG1\nPeso: 21 toneladas\nProfundidad: Excavación profunda\nOrugas: Acero`
     },
     {
       nombre: 'Motoniveladora JD 670G',
       imagen: '/img/maquinarias/MOTONIVELADORA2.jpg',
-      descripcion: `Motor: John Deere 6.8L
-  Cuchilla: 3.66 m
-  Potencia: 185 hp
-  Tracción: AWD opcional`
+      descripcion: `Motor: John Deere 6.8L\nCuchilla: 3.66 m\nPotencia: 185 hp\nTracción: AWD opcional`
     },
     {
       nombre: 'Rodillo Compactador CS-533E',
       imagen: '/img/maquinarias/rollocompactador.png',
-      descripcion: `Tipo: Compactador vibratorio
-  Marca: CAT
-  Aplicación: Subbases y asfaltos
-  Rueda: Lisa`
+      descripcion: `Tipo: Compactador vibratorio\nMarca: CAT\nAplicación: Subbases y asfaltos\nRueda: Lisa`
     },
     {
       nombre: 'Planta Seleccionadora de Áridos',
       imagen: '/img/maquinarias/seleccionadoraridos.jpg',
-      descripcion: `Tipo: Planta seleccionadora
-  Sistema: Cribas vibratorias
-  Transportadores: Integrados
-  Aplicación: Granulometría variable`
+      descripcion: `Tipo: Planta seleccionadora\nSistema: Cribas vibratorias\nTransportadores: Integrados\nAplicación: Granulometría variable`
     },
   ]
 
+  // Función para cortar el array en chunks de 4
   const chunkArray = (array, size) => {
     const chunked = []
     for (let i = 0; i < array.length; i += size) {
@@ -149,20 +144,24 @@
     return chunked
   }
 
-  const visibleCards = ref(isMobile.value ? 2 : 4)
-
-  onMounted(() => {
-    window.addEventListener('resize', () => {
-      isMobile.value = window.innerWidth < 768
-      visibleCards.value = isMobile.value ? 2 : 4
-    })
-  })
+  const visibleCards = ref(4) // ahora visible 4 (2 filas de 2 columnas)
 
   const chunkedMaquinarias = computed(() => chunkArray(maquinarias, visibleCards.value))
 
-  const prevSlide = () => { if (currentSlide.value > 0) currentSlide.value-- }
-  const nextSlide = () => { if (currentSlide.value < chunkedMaquinarias.value.length - 1) currentSlide.value++ }
+  onMounted(() => {
+    window.addEventListener('resize', () => {
+      isMobile.value = window.innerWidth < 1024
+    })
+  })
 
+  const prevSlide = () => {
+    if (currentSlide.value > 0) currentSlide.value--
+  }
+  const nextSlide = () => {
+    if (currentSlide.value < chunkedMaquinarias.value.length - 1) currentSlide.value++
+  }
+
+  // Touch support
   let startX = 0, endX = 0
   function startTouch(e) { startX = e.touches[0].clientX }
   function moveTouch(e) { endX = e.touches[0].clientX }

@@ -22,18 +22,26 @@
       <Servicios />
 
        <!-- Maquinarias -->
+       <section id="catalogo">
        <Maquinarias />
+    </section>
 
 
       <!-- Proyectos -->
+      <section id="proyectos">
       <ProyectosDestacados />
+    </section>
 
 
       <!-- Testimonios -->
-      <Testimonios />
+      <section id="nosotros">
+  <Testimonios />
+</section>
 
       <!-- Footer -->
+      <section id="contacto">
       <Footer />
+    </section>
     </div>
   </template>
 
