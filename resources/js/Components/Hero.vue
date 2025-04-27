@@ -1,15 +1,15 @@
 <template>
-    <section class="relative isolate overflow-hidden bg-gray-900 py-32 sm:py-44 animate-fadeZoom">
-      <!-- Imagen de fondo fija desde sm: -->
-      <!-- Imagen de fondo con efecto fijo universal -->
-<div
-class="absolute inset-0 -z-10 bg-fixed bg-cover bg-center will-change-transform transition-all duration-1000"
-
-  :style="{ backgroundImage: `url(${image})` }"
->
-  <div class="w-full h-full bg-black/50 mix-blend-multiply"></div>
-</div>
-
+    <section
+      class="relative isolate overflow-hidden bg-gray-900 min-h-[80vh] flex items-end sm:items-center py-16 sm:py-0 animate-fadeZoom"
+    >
+      <!-- Imagen de fondo fija absoluta en escritorio -->
+      <div
+        class="absolute inset-0 -z-20 bg-cover bg-[center_40%] transition-all duration-1000"
+        :class="{ 'fixed-image': isDesktop }"
+        :style="{ backgroundImage: `url(${image})` }"
+      >
+        <div class="w-full h-full bg-black/50 mix-blend-multiply"></div>
+      </div>
 
       <!-- Grano animado -->
       <div class="absolute inset-0 z-0 pointer-events-none grain-overlay"></div>
@@ -24,7 +24,7 @@ class="absolute inset-0 -z-10 bg-fixed bg-cover bg-center will-change-transform 
         ></div>
       </div>
 
-      <!-- Contenido del Hero -->
+      <!-- Contenido -->
       <div class="relative z-10 px-6 lg:px-20 max-w-4xl text-left">
         <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white uppercase">
           {{ title }}
@@ -49,13 +49,21 @@ class="absolute inset-0 -z-10 bg-fixed bg-cover bg-center will-change-transform 
   </template>
 
   <script setup>
+  import { ref, onMounted } from 'vue'
+
   const props = defineProps({
     title: { type: String, required: true },
     subtitle: { type: String, default: '' },
     image: { type: String, required: true },
   })
 
-  // Partículas animadas
+  const isDesktop = ref(false)
+
+  onMounted(() => {
+    isDesktop.value = window.innerWidth >= 768
+  })
+
+  // Estilos aleatorios para partículas
   const randomStyle = () => {
     const top = Math.random() * 100
     const left = Math.random() * 100
@@ -71,7 +79,6 @@ class="absolute inset-0 -z-10 bg-fixed bg-cover bg-center will-change-transform 
   </script>
 
   <style scoped>
-  /* Fade + Zoom animación */
   @keyframes fadeZoom {
     from {
       opacity: 0;
@@ -86,14 +93,12 @@ class="absolute inset-0 -z-10 bg-fixed bg-cover bg-center will-change-transform 
     animation: fadeZoom 1.2s ease-out both;
   }
 
-  /* Fondo de grano animado */
   .grain-overlay {
     background-image: url("data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%20200%20200%27%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%3E%3Cfilter%20id%3D%27noiseFilter%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.65%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27/%3E%3C/filter%3E%3Crect%20width%3D%27200%25%27%20height%3D%27200%25%27%20filter%3D%27url(%23noiseFilter)%27/%3E%3C/svg%3E");
     opacity: 0.08;
     mix-blend-mode: overlay;
   }
 
-  /* Animación de partículas flotantes */
   @keyframes float {
     0% {
       transform: translateY(0) scale(1);
@@ -110,5 +115,15 @@ class="absolute inset-0 -z-10 bg-fixed bg-cover bg-center will-change-transform 
   }
   .animate-float {
     animation: float infinite ease-in-out;
+  }
+
+  /* Imagen fija para escritorio */
+  .fixed-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
   }
   </style>
