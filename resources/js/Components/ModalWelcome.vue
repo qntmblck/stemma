@@ -3,19 +3,11 @@
       <div
         v-if="showModal"
         class="fixed inset-0 z-[1000] bg-black/70 flex items-center justify-center px-2 sm:px-4"
-        @click.self="closeModal"
+        @click="handleClick"
       >
         <div
           class="relative bg-yellow-400 text-center text-gray-900 rounded-xl p-6 sm:p-10 max-w-xl w-full shadow-2xl overflow-y-auto max-h-[90vh]"
         >
-          <!-- Botón de cerrar -->
-          <button
-            @click="closeModal"
-            class="absolute top-3 right-3 text-3xl font-bold text-gray-800 hover:text-gray-600 focus:outline-none"
-          >
-            &times;
-          </button>
-
           <h2 class="text-2xl sm:text-3xl font-extrabold mb-4">NUESTRO COMPROMISO</h2>
 
           <img src="/stemma.png" alt="Logo Santa Emma" class="mx-auto h-28 sm:h-32 mb-6" />
@@ -34,13 +26,19 @@
   import { ref, onMounted } from 'vue'
 
   const showModal = ref(false)
+  const canClose = ref(false)
 
-  function closeModal() {
-    showModal.value = false
+  function handleClick() {
+    if (canClose.value) {
+      showModal.value = false
+    }
   }
 
   onMounted(() => {
     showModal.value = true
+    setTimeout(() => {
+      canClose.value = true
+    }, 700) // Permitir cerrar después de 0.7 segundos (suficiente para ver el mensaje)
   })
   </script>
 
