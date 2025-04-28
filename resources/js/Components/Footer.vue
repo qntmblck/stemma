@@ -2,20 +2,20 @@
     <footer class="relative text-white font-semibold overflow-hidden" style="background-color: #1c120a;">
       <!-- Fondo patrón dorado -->
       <div
-        class="absolute inset-0 z-0 pointer-events-none animate-move-pattern"
+        class="absolute inset-0 z-0 pointer-events-none animate-slow-pattern"
         style="
           background-image: radial-gradient(circle at 25% 25%, #facc15 1px, transparent 1px);
           background-size: 60px 60px;
-          opacity: 0.2;
+          opacity: 0.15;
         "
       ></div>
 
       <!-- Partículas blancas tenues -->
       <div class="absolute inset-0 z-10 pointer-events-none overflow-hidden">
         <div
-          v-for="i in 30"
+          v-for="i in 20"
           :key="i"
-          class="absolute w-1 h-1 bg-white/20 rounded-full animate-float"
+          class="absolute w-1 h-1 bg-white/20 rounded-full animate-slow-float"
           :style="randomStyle()"
         ></div>
       </div>
@@ -58,16 +58,16 @@
               </div>
             </div>
 
-            <!-- Mapa -->
+            <!-- Mapa optimizado -->
             <div class="w-full h-96 rounded-xl overflow-hidden shadow-xl relative">
               <img
+                v-if="!mapaVisible"
                 src="/img/mapa-placeholder.jpg"
                 alt="Ubicación Constructora Santa Emma"
-                class="absolute inset-0 w-full h-full object-cover blur-sm transition-opacity duration-500"
-                :class="{ 'opacity-0': mapaVisible }"
+                class="absolute inset-0 w-full h-full object-cover blur-sm transition duration-500"
               />
               <iframe
-                v-show="mapaVisible"
+                v-if="mapaVisible"
                 @load="onMapLoad"
                 src="https://www.google.com/maps?q=Parcela+Santa+Elena,+Puerto+Montt,+Los+Lagos,+Chile&output=embed"
                 class="absolute inset-0 w-full h-full"
@@ -133,18 +133,18 @@
   onMounted(() => {
     setTimeout(() => {
       mapaVisible.value = true
-    }, 2000)
+    }, 1200) // Carga más rápida el mapa pero controlada
   })
 
   const onMapLoad = () => {
-    console.log('Mapa cargado')
+    console.log('Mapa cargado correctamente.')
   }
 
   const randomStyle = () => {
     const top = Math.random() * 100
     const left = Math.random() * 100
     const delay = Math.random() * 5
-    const duration = 5 + Math.random() * 5
+    const duration = 8 + Math.random() * 4
     return {
       top: `${top}%`,
       left: `${left}%`,
@@ -155,20 +155,20 @@
   </script>
 
   <style scoped>
-  @keyframes move-pattern {
+  @keyframes slow-pattern {
     0% { background-position: 0 0; }
-    100% { background-position: 100px 100px; }
+    100% { background-position: 80px 80px; }
   }
-  .animate-move-pattern {
-    animation: move-pattern 80s linear infinite;
+  .animate-slow-pattern {
+    animation: slow-pattern 100s linear infinite;
   }
 
-  @keyframes float {
-    0% { transform: translateY(0) scale(1); opacity: 0.5; }
-    50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
-    100% { transform: translateY(0) scale(1); opacity: 0.5; }
+  @keyframes slow-float {
+    0% { transform: translateY(0) scale(1); opacity: 0.4; }
+    50% { transform: translateY(-15px) scale(1.1); opacity: 0.7; }
+    100% { transform: translateY(0) scale(1); opacity: 0.4; }
   }
-  .animate-float {
-    animation: float infinite ease-in-out;
+  .animate-slow-float {
+    animation: slow-float 10s ease-in-out infinite;
   }
   </style>
