@@ -2,10 +2,9 @@
     <section
       class="relative isolate overflow-hidden bg-gray-900 min-h-[80vh] flex items-end sm:items-center py-16 sm:py-0 animate-fadeZoom"
     >
-      <!-- Imagen de fondo fija absoluta en escritorio -->
+      <!-- Imagen de fondo fija real desde escritorio -->
       <div
-        class="absolute inset-0 -z-20 bg-cover bg-[center_40%] transition-all duration-1000"
-        :class="{ 'fixed-image': isDesktop }"
+        class="absolute inset-0 -z-20 bg-cover bg-center sm:bg-fixed transition-all duration-1000"
         :style="{ backgroundImage: `url(${image})` }"
       >
         <div class="w-full h-full bg-black/50 mix-blend-multiply"></div>
@@ -49,18 +48,12 @@
   </template>
 
   <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref } from 'vue'
 
   const props = defineProps({
     title: { type: String, required: true },
     subtitle: { type: String, default: '' },
     image: { type: String, required: true },
-  })
-
-  const isDesktop = ref(false)
-
-  onMounted(() => {
-    isDesktop.value = window.innerWidth >= 768
   })
 
   // Estilos aleatorios para partículas
@@ -79,6 +72,7 @@
   </script>
 
   <style scoped>
+  /* Fade Zoom de entrada */
   @keyframes fadeZoom {
     from {
       opacity: 0;
@@ -93,12 +87,14 @@
     animation: fadeZoom 1.2s ease-out both;
   }
 
+  /* Grano animado */
   .grain-overlay {
     background-image: url("data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%20200%20200%27%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%3E%3Cfilter%20id%3D%27noiseFilter%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.65%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27/%3E%3C/filter%3E%3Crect%20width%3D%27200%25%27%20height%3D%27200%25%27%20filter%3D%27url(%23noiseFilter)%27/%3E%3C/svg%3E");
     opacity: 0.08;
     mix-blend-mode: overlay;
   }
 
+  /* Animación flotante de partículas */
   @keyframes float {
     0% {
       transform: translateY(0) scale(1);
@@ -115,15 +111,5 @@
   }
   .animate-float {
     animation: float infinite ease-in-out;
-  }
-
-  /* Imagen fija para escritorio */
-  .fixed-image {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
   }
   </style>

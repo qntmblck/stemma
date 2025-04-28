@@ -1,14 +1,10 @@
 <template>
-    <div class="relative isolate bg-white pb-20 pt-16 sm:pt-16">
-      <!-- Fondo animado adaptado a colores Santa Emma -->
-      <div
-        class="absolute inset-x-0 top-1/2 -z-10 -translate-y-1/2 transform-gpu overflow-hidden opacity-20 blur-3xl"
-        aria-hidden="true"
-      >
-        <div
-          class="ml-[max(50%,38rem)] aspect-[1313/771] w-[82rem] bg-gradient-to-tr from-yellow-200 to-yellow-600"
-          style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-        />
+    <div class="relative isolate bg-white pb-20 pt-16 sm:pt-16 overflow-hidden">
+      <!-- Fondo de grano y partículas doradas -->
+      <div class="absolute inset-0 -z-10 pointer-events-none">
+        <div class="absolute inset-0 grain-overlay"></div>
+        <div v-for="i in 40" :key="i" class="absolute w-1 h-1 bg-yellow-400 rounded-full animate-float"
+             :style="randomStyle()"></div>
       </div>
 
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -22,11 +18,12 @@
         </div>
 
         <div
-          class="mx-auto mt-16 grid max-w-2xl grid-cols-1 grid-rows-1 gap-8 text-sm/6 text-gray-900 sm:mt-16 sm:grid-cols-2 xl:mx-0 xl:max-w-none xl:grid-flow-col xl:grid-cols-4"
+          class="mx-auto mt-16 grid max-w-2xl grid-cols-1 grid-rows-1 gap-8 text-sm/6 text-gray-900
+          sm:mt-16 sm:grid-cols-2 sm:max-w-4xl lg:max-w-none lg:grid-flow-col lg:grid-cols-4"
         >
-          <!-- Testimonio destacado -->
+          <!-- Testimonio principal grande -->
           <figure
-            class="rounded-2xl bg-white shadow-lg ring-1 ring-yellow-400 sm:col-span-2 xl:col-start-2 xl:row-end-1 border-l-4 border-yellow-500"
+            class="rounded-2xl bg-white shadow-lg ring-1 ring-yellow-400 sm:col-span-2 lg:col-start-2 lg:row-end-1 border-l-4 border-yellow-500"
           >
             <blockquote
               class="p-6 text-lg font-semibold tracking-tight text-gray-900 sm:p-8 sm:text-xl"
@@ -126,4 +123,37 @@
       },
     },
   ]
+
+  // Partículas doradas animadas
+  const randomStyle = () => {
+    const top = Math.random() * 100;
+    const left = Math.random() * 100;
+    const delay = Math.random() * 5;
+    const duration = 5 + Math.random() * 5;
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      animationDelay: `${delay}s`,
+      animationDuration: `${duration}s`,
+    }
+  }
   </script>
+
+  <style scoped>
+  @keyframes float {
+    0% { transform: translateY(0) scale(1); opacity: 0.3; }
+    50% { transform: translateY(-20px) scale(1.2); opacity: 0.7; }
+    100% { transform: translateY(0) scale(1); opacity: 0.3; }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .grain-overlay {
+    background-image: radial-gradient(circle at 25% 25%, #facc15 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  </style>
