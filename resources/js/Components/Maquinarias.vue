@@ -99,53 +99,21 @@
   </template>
 
   <script setup>
-  import { ref, computed, onMounted } from 'vue'
+  import { ref, computed, onMounted, onUnmounted } from 'vue'
   import Flashcard2 from '@/Components/Flashcard2.vue'
 
   const currentSlide = ref(0)
   const isMobile = ref(window.innerWidth < 1024)
 
   const maquinarias = [
-    {
-      nombre: 'Camioneta Combustible GT TZ 38',
-      imagen: '/img/maquinarias/CAMION-COMBUSTIBLE.jpg',
-      descripcion: `Marca: Mercedes-Benz 1016\nCapacidad: 4 m³\nEstanque: Homologado\nUso: Transporte de combustible`
-    },
-    {
-      nombre: 'Camión Tolva LT HV 83',
-      imagen: '/img/maquinarias/camiontolva.jpg',
-      descripcion: `Capacidad: 14 m³\nMotor: Euro 5\nUso: Materiales granulares\nTracción: 6x4`
-    },
-    {
-      nombre: 'Cargador Frontal SEM 656D',
-      imagen: '/img/maquinarias/cargadorfrontal.jpg',
-      descripcion: `Capacidad: Balde 3 m³\nMotor: Weichai\nAplicación: Movimiento de tierra\nPeso operativo: 17 toneladas`
-    },
-    {
-      nombre: 'Chancadora Trakpactor',
-      imagen: '/img/maquinarias/chancacadora.jpg',
-      descripcion: `Tipo: Planta impactadora móvil\nMarca: Powerscreen\nCapacidad: Alta producción\nUso: Trituración de roca`
-    },
-    {
-      nombre: 'Excavadora Sunward SWE210',
-      imagen: '/img/maquinarias/excavadora.jpg',
-      descripcion: `Motor: Isuzu 6BG1\nPeso: 21 toneladas\nProfundidad: Excavación profunda\nOrugas: Acero`
-    },
-    {
-      nombre: 'Motoniveladora JD 670G',
-      imagen: '/img/maquinarias/MOTONIVELADORA2.jpg',
-      descripcion: `Motor: John Deere 6.8L\nCuchilla: 3.66 m\nPotencia: 185 hp\nTracción: AWD opcional`
-    },
-    {
-      nombre: 'Rodillo Compactador CS-533E',
-      imagen: '/img/maquinarias/rollocompactador.png',
-      descripcion: `Tipo: Compactador vibratorio\nMarca: CAT\nAplicación: Subbases y asfaltos\nRueda: Lisa`
-    },
-    {
-      nombre: 'Planta Seleccionadora de Áridos',
-      imagen: '/img/maquinarias/seleccionadoraridos.jpg',
-      descripcion: `Tipo: Planta seleccionadora\nSistema: Cribas vibratorias\nTransportadores: Integrados\nAplicación: Granulometría variable`
-    },
+    { nombre: 'Camioneta Combustible GT TZ 38', imagen: '/img/maquinarias/CAMION-COMBUSTIBLE.jpg', descripcion: `Marca: Mercedes-Benz 1016\nCapacidad: 4 m³\nEstanque: Homologado\nUso: Transporte de combustible` },
+    { nombre: 'Camión Tolva LT HV 83', imagen: '/img/maquinarias/camiontolva.jpg', descripcion: `Capacidad: 14 m³\nMotor: Euro 5\nUso: Materiales granulares\nTracción: 6x4` },
+    { nombre: 'Cargador Frontal SEM 656D', imagen: '/img/maquinarias/cargadorfrontal.jpg', descripcion: `Capacidad: Balde 3 m³\nMotor: Weichai\nAplicación: Movimiento de tierra\nPeso operativo: 17 toneladas` },
+    { nombre: 'Chancadora Trakpactor', imagen: '/img/maquinarias/chancacadora.jpg', descripcion: `Tipo: Planta impactadora móvil\nMarca: Powerscreen\nCapacidad: Alta producción\nUso: Trituración de roca` },
+    { nombre: 'Excavadora Sunward SWE210', imagen: '/img/maquinarias/excavadora.jpg', descripcion: `Motor: Isuzu 6BG1\nPeso: 21 toneladas\nProfundidad: Excavación profunda\nOrugas: Acero` },
+    { nombre: 'Motoniveladora JD 670G', imagen: '/img/maquinarias/MOTONIVELADORA2.jpg', descripcion: `Motor: John Deere 6.8L\nCuchilla: 3.66 m\nPotencia: 185 hp\nTracción: AWD opcional` },
+    { nombre: 'Rodillo Compactador CS-533E', imagen: '/img/maquinarias/rollocompactador.png', descripcion: `Tipo: Compactador vibratorio\nMarca: CAT\nAplicación: Subbases y asfaltos\nRueda: Lisa` },
+    { nombre: 'Planta Seleccionadora de Áridos', imagen: '/img/maquinarias/seleccionadoraridos.jpg', descripcion: `Tipo: Planta seleccionadora\nSistema: Cribas vibratorias\nTransportadores: Integrados\nAplicación: Granulometría variable` },
   ]
 
   const chunkArray = (array, size) => {
@@ -157,13 +125,17 @@
   }
 
   const visibleCards = ref(4)
-
   const chunkedMaquinarias = computed(() => chunkArray(maquinarias, visibleCards.value))
 
+  const handleResize = () => {
+    isMobile.value = window.innerWidth < 1024
+  }
+
   onMounted(() => {
-    window.addEventListener('resize', () => {
-      isMobile.value = window.innerWidth < 1024
-    })
+    window.addEventListener('resize', handleResize)
+  })
+  onUnmounted(() => {
+    window.removeEventListener('resize', handleResize)
   })
 
   const prevSlide = () => {
@@ -173,17 +145,41 @@
     if (currentSlide.value < chunkedMaquinarias.value.length - 1) currentSlide.value++
   }
 
-  // Touch support
-  let startX = 0, endX = 0
-  function startTouch(e) { startX = e.touches[0].clientX }
-  function moveTouch(e) { endX = e.touches[0].clientX }
-  function endTouch() {
-    const threshold = 50
-    const deltaX = endX - startX
-    if (deltaX > threshold) prevSlide()
-    else if (deltaX < -threshold) nextSlide()
+  // Swipe mejorado
+  let startX = 0
+  let startY = 0
+  let startTime = 0
+
+  function startTouch(e) {
+    const touch = e.touches[0]
+    startX = touch.clientX
+    startY = touch.clientY
+    startTime = new Date().getTime()
+  }
+
+  function moveTouch(e) {}
+
+  function endTouch(e) {
+    const touch = e.changedTouches[0]
+    const deltaX = touch.clientX - startX
+    const deltaY = touch.clientY - startY
+    const elapsedTime = new Date().getTime() - startTime
+
+    const swipeThreshold = 50 // Mínimo px para considerar swipe
+    const timeThreshold = 400 // Máximo ms para considerar swipe
+    const allowedVerticalMovement = 75 // Máximo vertical para no invalidar
+
+    if (elapsedTime <= timeThreshold && Math.abs(deltaX) >= swipeThreshold && Math.abs(deltaY) <= allowedVerticalMovement) {
+      if (deltaX > 0) {
+        prevSlide()
+      } else {
+        nextSlide()
+      }
+    }
+
     startX = 0
-    endX = 0
+    startY = 0
+    startTime = 0
   }
 
   // Script para partículas
@@ -210,14 +206,12 @@
     animation: move-pattern 80s linear infinite;
   }
 
-  /* Grano */
   .grain-overlay {
     background-image: url("data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%20200%20200%27%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%3E%3Cfilter%20id%3D%27noiseFilter%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.8%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27/%3E%3C/filter%3E%3Crect%20width%3D%27200%25%27%20height%3D%27200%25%27%20filter%3D%27url(%23noiseFilter)%27/%3E%3C/svg%3E");
     opacity: 0.05;
     mix-blend-mode: overlay;
   }
 
-  /* Animación partículas flotantes */
   @keyframes float {
     0% { transform: translateY(0) scale(1); opacity: 0.4; }
     50% { transform: translateY(-20px) scale(1.2); opacity: 0.8; }
