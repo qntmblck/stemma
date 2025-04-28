@@ -46,10 +46,10 @@
     { concepto: 'Página adicional: Proyectos', monto: '$30.000' },
     { concepto: 'Página adicional: Catálogo', monto: '$30.000' },
     { concepto: 'Página adicional: Contacto', monto: '$30.000' },
-    { concepto: 'Formulario de contacto/cotización con envío de correo automatico', monto: '$40.000' },
+    { concepto: 'Formulario de contacto/cotización con envío de correo automatico', monto: '$50.000' },
     { concepto: 'Correo corporativo anual: cuenta gerencial', monto: '$30.000' },
     { concepto: 'Correo corporativo anual: cuenta administrativa adicional', monto: '$10.000' },
-    { concepto: 'Botón flotante de WhatsApp para atención directa', monto: '$60.000' },
+    { concepto: 'Botón flotante de WhatsApp para atención directa', monto: '$50.000' },
   ];
   </script>
 
