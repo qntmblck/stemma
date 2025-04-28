@@ -10,24 +10,24 @@
             <tr>
               <th scope="col" class="px-6 py-3">Concepto</th>
               <th scope="col" class="px-6 py-3">Monto CLP</th>
-              <th scope="col" class="px-6 py-3">Pactado</th>
+              <th scope="col" class="px-6 py-3">Pagado</th>
             </tr>
           </thead>
           <tbody>
             <tr class="border-b">
-              <td class="px-6 py-4">🔴 Landing page básica (Diseño y Contenido de 5-6 Secciones dinámicas en Versión Móbil y Escritorio)</td>
+              <td class="px-6 py-4">🔴 Landing page básica (Diseño y Contenido de 5-6 Secciones responsivas en Versión Móbil y Escritorio)</td>
               <td class="px-6 py-4 line-through text-red-500">$250.000</td>
               <td class="px-6 py-4 font-bold text-green-600">$150.000</td>
             </tr>
             <tr class="border-b" v-for="(item, index) in adicionales" :key="index">
               <td class="px-6 py-4">{{ item.concepto }}</td>
               <td class="px-6 py-4">{{ item.monto }}</td>
-              <td class="px-6 py-4 text-yellow-600">🟡 {{ item.monto }} <span class="italic">(por aceptar)</span></td>
+              <td class="px-6 py-4 text-yellow-600"> </td>
             </tr>
             <tr class="bg-yellow-50 font-semibold border-t">
               <td class="px-6 py-4">🧾 Total sin mantención</td>
-              <td class="px-6 py-4">$520.000</td>
-              <td class="px-6 py-4">$420.000 ($150.000 + $270.000 por aceptar)</td>
+              <td class="px-6 py-4"></td>
+              <td class="px-6 py-4">$150.000</td>
             </tr>
             <tr class="border-b">
               <td class="px-6 py-4">🔴 Mantención Anual Categoría 1</td>

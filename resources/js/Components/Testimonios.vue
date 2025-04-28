@@ -1,10 +1,14 @@
 <template>
-    <div class="relative isolate bg-white pb-20 pt-16 sm:pt-16 overflow-hidden">
-      <!-- Fondo de grano y partículas doradas -->
+    <div class="relative isolate bg-gradient-to-b from-white via-yellow-100 to-yellow-50 pb-40 pt-16 sm:pt-16 overflow-hidden">
+      <!-- Fondo de grano y partículas -->
       <div class="absolute inset-0 -z-10 pointer-events-none">
         <div class="absolute inset-0 grain-overlay"></div>
-        <div v-for="i in 40" :key="i" class="absolute w-1 h-1 bg-yellow-400 rounded-full animate-float"
-             :style="randomStyle()"></div>
+        <div
+          v-for="i in 40"
+          :key="i"
+          class="absolute w-1.5 h-1.5 bg-[#facc15]/40 rounded-full animate-float-slow"
+          :style="randomStyle()"
+        ></div>
       </div>
 
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -23,7 +27,7 @@
         >
           <!-- Testimonio principal grande -->
           <figure
-            class="rounded-2xl bg-white shadow-lg ring-1 ring-yellow-400 sm:col-span-2 lg:col-start-2 lg:row-end-1 border-l-4 border-yellow-500"
+            class="rounded-2xl bg-white shadow-lg ring-1 ring-yellow-300 sm:col-span-2 lg:col-start-2 lg:row-end-1 border-l-4 border-yellow-400"
           >
             <blockquote
               class="p-6 text-lg font-semibold tracking-tight text-gray-900 sm:p-8 sm:text-xl"
@@ -35,7 +39,7 @@
             </blockquote>
             <figcaption class="flex items-center gap-x-4 border-t border-gray-200 px-6 py-4">
               <img
-                class="size-10 rounded-full object-cover border-2 border-yellow-500"
+                class="size-10 rounded-full object-cover border-2 border-yellow-400"
                 src="/img/testimonios/ener.png"
                 alt="Valentina Espinoza"
               />
@@ -50,14 +54,14 @@
           <figure
             v-for="testimonial in testimonios"
             :key="testimonial.author.handle"
-            class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5 border-l-4 border-yellow-500"
+            class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5 border-l-4 border-yellow-300"
           >
             <blockquote class="text-gray-900">
               <p>“{{ testimonial.body }}”</p>
             </blockquote>
             <figcaption class="mt-6 flex items-center gap-x-4">
               <img
-                class="size-10 rounded-full object-cover border-2 border-yellow-500"
+                class="size-10 rounded-full object-cover border-2 border-yellow-400"
                 :src="testimonial.author.imageUrl"
                 :alt="testimonial.author.name"
               />
@@ -69,6 +73,9 @@
           </figure>
         </div>
       </div>
+
+      <!-- Degradado para suavizar corte con el footer -->
+      <div class="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-b from-transparent to-[#1c120a] z-10"></div>
     </div>
   </template>
 
@@ -124,12 +131,12 @@
     },
   ]
 
-  // Partículas doradas animadas
+  // Estilos aleatorios para partículas
   const randomStyle = () => {
     const top = Math.random() * 100;
     const left = Math.random() * 100;
     const delay = Math.random() * 5;
-    const duration = 5 + Math.random() * 5;
+    const duration = 8 + Math.random() * 6; // más lento aún
     return {
       top: `${top}%`,
       left: `${left}%`,
@@ -140,19 +147,19 @@
   </script>
 
   <style scoped>
-  @keyframes float {
+  @keyframes float-slow {
     0% { transform: translateY(0) scale(1); opacity: 0.3; }
-    50% { transform: translateY(-20px) scale(1.2); opacity: 0.7; }
+    50% { transform: translateY(-30px) scale(1.3); opacity: 0.7; }
     100% { transform: translateY(0) scale(1); opacity: 0.3; }
   }
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
   }
 
   .grain-overlay {
     background-image: radial-gradient(circle at 25% 25%, #facc15 1px, transparent 1px);
     background-size: 60px 60px;
-    opacity: 0.05;
+    opacity: 0.04;
     mix-blend-mode: overlay;
     pointer-events: none;
   }

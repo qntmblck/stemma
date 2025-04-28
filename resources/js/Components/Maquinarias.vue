@@ -10,9 +10,22 @@
         style="
           background-image: radial-gradient(circle at 25% 25%, #facc15 1px, transparent 1px);
           background-size: 60px 60px;
-          opacity: 0.2;
+          opacity: 0.15;
         "
       ></div>
+
+      <!-- Grano animado -->
+      <div class="absolute inset-0 z-0 pointer-events-none grain-overlay"></div>
+
+      <!-- Partículas doradas animadas -->
+      <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div
+          v-for="i in 25"
+          :key="i"
+          class="absolute w-1 h-1 bg-yellow-400/40 rounded-full animate-float"
+          :style="randomStyle()"
+        ></div>
+      </div>
 
       <!-- Contenido principal -->
       <div class="relative z-10">
@@ -90,7 +103,7 @@
   import Flashcard2 from '@/Components/Flashcard2.vue'
 
   const currentSlide = ref(0)
-  const isMobile = ref(window.innerWidth < 1024) // Ahora tomamos mobile/tablet (hasta 1024px)
+  const isMobile = ref(window.innerWidth < 1024)
 
   const maquinarias = [
     {
@@ -135,7 +148,6 @@
     },
   ]
 
-  // Función para cortar el array en chunks de 4
   const chunkArray = (array, size) => {
     const chunked = []
     for (let i = 0; i < array.length; i += size) {
@@ -144,7 +156,7 @@
     return chunked
   }
 
-  const visibleCards = ref(4) // ahora visible 4 (2 filas de 2 columnas)
+  const visibleCards = ref(4)
 
   const chunkedMaquinarias = computed(() => chunkArray(maquinarias, visibleCards.value))
 
@@ -173,6 +185,20 @@
     startX = 0
     endX = 0
   }
+
+  // Script para partículas
+  const randomStyle = () => {
+    const top = Math.random() * 100
+    const left = Math.random() * 100
+    const delay = Math.random() * 5
+    const duration = 5 + Math.random() * 5
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      animationDelay: `${delay}s`,
+      animationDuration: `${duration}s`,
+    }
+  }
   </script>
 
   <style scoped>
@@ -182,5 +208,22 @@
   }
   .animate-move-pattern {
     animation: move-pattern 80s linear infinite;
+  }
+
+  /* Grano */
+  .grain-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%20200%20200%27%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%3E%3Cfilter%20id%3D%27noiseFilter%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.8%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27/%3E%3C/filter%3E%3Crect%20width%3D%27200%25%27%20height%3D%27200%25%27%20filter%3D%27url(%23noiseFilter)%27/%3E%3C/svg%3E");
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+  }
+
+  /* Animación partículas flotantes */
+  @keyframes float {
+    0% { transform: translateY(0) scale(1); opacity: 0.4; }
+    50% { transform: translateY(-20px) scale(1.2); opacity: 0.8; }
+    100% { transform: translateY(0) scale(1); opacity: 0.4; }
+  }
+  .animate-float {
+    animation: float infinite ease-in-out;
   }
   </style>
