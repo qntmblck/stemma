@@ -28,7 +28,7 @@
       <div class="relative z-20">
         <!-- Texto superior -->
         <div class="mb-10 max-w-6xl mx-auto text-center">
-          <p class="text-base sm:text-lg font-bold leading-relaxed tracking-wide text-gray-300">
+          <p class="text-base sm:text-lg font-bold leading-relaxed tracking-wide text-white">
             Actualización constante de equipos y servicios, para responder con eficiencia y seguridad a los desafíos de la construcción moderna.
           </p>
         </div>
