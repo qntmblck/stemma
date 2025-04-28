@@ -2,9 +2,9 @@
     <section
       class="relative isolate overflow-hidden bg-gray-900 min-h-[80vh] flex items-end sm:items-center py-16 sm:py-0"
     >
-      <!-- Imagen de fondo fija cinematográfica -->
+      <!-- Imagen de fondo cinematográfica adaptada -->
       <div
-        class="absolute inset-0 -z-20 bg-cover bg-center bg-fixed"
+        class="absolute inset-0 -z-20 bg-cover bg-center bg-scroll sm:bg-fixed"
         :style="{ backgroundImage: `url(${image})` }"
       >
         <div class="w-full h-full bg-black/50 mix-blend-multiply"></div>
@@ -43,6 +43,5 @@
   </script>
 
   <style scoped>
-  /* No agregamos animaciones ni efectos extra */
-  /* Solo mantenemos estilos básicos de transición del botón */
+  /* Solo mantenemos transiciones suaves del botón */
   </style>
