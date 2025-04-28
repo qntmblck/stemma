@@ -1,18 +1,31 @@
 <template>
     <section
       id="proyectos"
-      class="relative isolate py-20 px-6 sm:px-8 lg:px-12 text-white"
+      class="relative isolate py-20 px-6 sm:px-8 lg:px-12 text-white min-h-[80vh]"
     >
-      <!-- Fondo fijo solo en desktop -->
+      <!-- Imagen de fondo fija -->
       <div
-        class="absolute inset-0 -z-10 bg-cover bg-center sm:bg-fixed"
+        class="absolute inset-0 -z-20 bg-cover bg-center sm:bg-fixed transition-all duration-1000"
         style="background-image: url('/img/h2.jpg')"
       >
-        <div class="w-full h-full bg-black/70 mix-blend-multiply"></div>
+        <div class="w-full h-full bg-black/60 mix-blend-multiply"></div>
       </div>
 
-      <div class="max-w-7xl mx-auto">
-        <!-- Título -->
+      <!-- Grano animado -->
+      <div class="absolute inset-0 z-0 pointer-events-none grain-overlay"></div>
+
+      <!-- Partículas flotantes -->
+      <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div
+          v-for="i in 25"
+          :key="i"
+          class="absolute w-1 h-1 bg-white/20 rounded-full animate-float"
+          :style="randomStyle()"
+        ></div>
+      </div>
+
+      <!-- Contenido principal -->
+      <div class="relative z-10 max-w-7xl mx-auto">
         <div class="text-center mb-16">
           <h2 class="text-4xl font-bold sm:text-5xl">Proyecto Destacado</h2>
           <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
@@ -20,9 +33,8 @@
           </p>
         </div>
 
-        <!-- Carrusel + Contenido -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <!-- Carousel -->
+          <!-- Carrusel -->
           <div class="relative">
             <div
               class="overflow-hidden rounded-xl shadow-xl"
@@ -36,7 +48,7 @@
               />
             </div>
 
-            <!-- Flechas -->
+            <!-- Botones -->
             <button
               @click="prevImage"
               class="absolute left-0 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-10 text-3xl transition"
@@ -79,6 +91,9 @@
           </div>
         </div>
       </div>
+
+      <!-- Degradado inferior para fusión elegante -->
+      <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent to-[#1c120a] z-10"></div>
     </section>
   </template>
 
@@ -101,7 +116,7 @@
     currentImage.value = (currentImage.value - 1 + images.length) % images.length
   }
 
-  // Swipe mobile
+  // Swipe para mobile
   let startX = 0
   let endX = 0
   function startTouch(e) {
@@ -118,4 +133,37 @@
     startX = 0
     endX = 0
   }
+
+  // Partículas random
+  const randomStyle = () => {
+    const top = Math.random() * 100
+    const left = Math.random() * 100
+    const delay = Math.random() * 5
+    const duration = 5 + Math.random() * 5
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      animationDelay: `${delay}s`,
+      animationDuration: `${duration}s`,
+    }
+  }
   </script>
+
+  <style scoped>
+  /* Animaciones de partículas flotantes */
+  @keyframes float {
+    0% { transform: translateY(0) scale(1); opacity: 0.3; }
+    50% { transform: translateY(-20px) scale(1.2); opacity: 0.7; }
+    100% { transform: translateY(0) scale(1); opacity: 0.3; }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Grano animado */
+  .grain-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%20200%20200%27%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%3E%3Cfilter%20id%3D%27noiseFilter%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.65%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27/%3E%3C/filter%3E%3Crect%20width%3D%27200%25%27%20height%3D%27200%25%27%20filter%3D%27url(%23noiseFilter)%27/%3E%3C/svg%3E");
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+  }
+  </style>
