@@ -27,11 +27,13 @@
       <!-- Contenido principal -->
       <div class="relative z-20">
         <!-- Texto superior -->
-        <div class="mb-10 max-w-6xl mx-auto text-center">
-          <p class="text-base sm:text-lg font-bold leading-relaxed tracking-wide text-white">
-            Actualización constante de equipos y servicios, para responder con eficiencia y seguridad a los desafíos de la construcción moderna.
-          </p>
-        </div>
+
+        <div class="mb-10 max-w-7xl mx-auto text-center">
+  <h2 class="text-lg font-semibold text-white tracking-wide uppercase text-center">
+    Equipos y servicios actualizados para liderar la construcción moderna:
+  </h2>
+</div>
+
 
         <!-- Carrusel -->
         <div class="relative">

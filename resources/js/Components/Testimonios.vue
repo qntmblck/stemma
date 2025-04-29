@@ -14,12 +14,9 @@
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
 
         <div class="mx-auto max-w-4xl text-center">
-          <h2 class="text-sm font-semibold text-yellow-600 tracking-wide uppercase">
+          <h2 class="text-lg font-semibold text-yellow-600 tracking-wide uppercase">
             Clientes que confían en Santa Emma
           </h2>
-          <p class="mt-2 text-base sm:text-lg text-gray-600">
-            Clientes que han confiado en nuestros proyectos, procesos y soluciones.
-          </p>
         </div>
 
         <div

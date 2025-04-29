@@ -1,6 +1,6 @@
 <template>
     <section
-      class="relative isolate overflow-hidden bg-gray-900 min-h-[80vh] flex items-end sm:items-center py-16 sm:py-0"
+      class="relative isolate overflow-hidden bg-gray-900 flex items-end sm:items-center py-24 sm:py-32"
     >
       <!-- Imagen de fondo cinematográfica adaptada -->
       <div
@@ -43,5 +43,5 @@
   </script>
 
   <style scoped>
-  /* Solo mantenemos transiciones suaves del botón */
+  /* Solo transiciones suaves del botón */
   </style>

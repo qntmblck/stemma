@@ -1,7 +1,7 @@
 <template>
     <section
       id="proyectos"
-      class="relative isolate py-20 px-6 sm:px-8 lg:px-12 text-white min-h-[80vh]"
+      class="relative isolate py-20 px-10 sm:px-8 lg:px-12 text-white min-h-[80vh]"
     >
       <!-- Imagen de fondo fija cinematográfica -->
       <div
@@ -81,7 +81,8 @@
       </div>
 
       <!-- Degradado inferior -->
-      <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent to-[#1c120a] z-10"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-b from-transparent to-[#fffbea] z-10"></div>
+
     </section>
   </template>
 
