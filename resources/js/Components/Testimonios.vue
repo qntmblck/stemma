@@ -1,5 +1,5 @@
 <template>
-    <div class="relative isolate bg-gradient-to-b from-white via-yellow-100 to-yellow-50 pb-40 pt-16 sm:pt-16 overflow-hidden">
+    <div class="relative isolate bg-gradient-to-b from-white via-yellow-100 to-yellow-50 pb-20 pt-16 sm:pt-16 overflow-hidden">
       <!-- Fondo de grano y partículas -->
       <div class="absolute inset-0 -z-10 pointer-events-none">
         <div class="absolute inset-0 grain-overlay"></div>
@@ -12,6 +12,7 @@
       </div>
 
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
+
         <div class="mx-auto max-w-4xl text-center">
           <h2 class="text-sm font-semibold text-yellow-600 tracking-wide uppercase">
             Clientes que confían en Santa Emma
