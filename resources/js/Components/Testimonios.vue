@@ -12,9 +12,14 @@
       </div>
 
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
-
         <div class="mx-auto max-w-4xl text-center">
-          <h2 class="text-lg font-semibold text-yellow-600 tracking-wide uppercase">
+          <h2
+            ref="titulo"
+            :class="[
+              'text-lg font-semibold text-yellow-600 tracking-wide uppercase transition-all duration-700',
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            ]"
+          >
             Clientes que confían en Santa Emma
           </h2>
         </div>
@@ -78,63 +83,41 @@
   </template>
 
   <script setup>
+  import { ref, onMounted, onUnmounted } from 'vue'
+
   const testimonios = [
     {
       body: 'Gracias a Santa Emma pudimos levantar en tiempo récord nuestra planta. Su compromiso y profesionalismo fueron claves.',
-      author: {
-        name: 'Carlos Riquelme',
-        handle: 'AgroSur',
-        imageUrl: '/img/testimonios/agrosur.png',
-      },
+      author: { name: 'Carlos Riquelme', handle: 'AgroSur', imageUrl: '/img/testimonios/agrosur.png' },
     },
     {
       body: 'Recomiendo su arriendo de maquinaria: equipos en excelente estado y atención personalizada. Volveremos a contratar.',
-      author: {
-        name: 'Luis Araya',
-        handle: 'Independiente',
-        imageUrl: '/img/testimonios/independiente.png',
-      },
+      author: { name: 'Luis Araya', handle: 'Independiente', imageUrl: '/img/testimonios/independiente.png' },
     },
     {
       body: 'Excelente experiencia en nuestro primer proyecto de inversión. Transparencia, informes detallados y confianza.',
-      author: {
-        name: 'Ignacio Contreras',
-        handle: 'Inversionista',
-        imageUrl: '/img/testimonios/inversionista.png',
-      },
+      author: { name: 'Ignacio Contreras', handle: 'Inversionista', imageUrl: '/img/testimonios/inversionista.png' },
     },
     {
       body: 'Empresa responsable en los tiempos de ejecución de los proyectos. Nos encontramos muy satisfechos.',
-      author: {
-        name: 'SINEP',
-        handle: 'SINEP ENERGÍA Y CONSTRUCCIÓN',
-        imageUrl: '/img/testimonios/sinep.png',
-      },
+      author: { name: 'SINEP', handle: 'SINEP ENERGÍA Y CONSTRUCCIÓN', imageUrl: '/img/testimonios/sinep.png' },
     },
     {
       body: 'Santa Emma ha sido un socio estratégico en nuestras obras civiles, aportando soluciones innovadoras y eficientes.',
-      author: {
-        name: 'María López',
-        handle: 'Constructora Andes',
-        imageUrl: '/img/testimonios/closandes.png',
-      },
+      author: { name: 'María López', handle: 'Constructora Andes', imageUrl: '/img/testimonios/closandes.png' },
     },
     {
       body: 'La colaboración con Santa Emma en proyectos de urbanización ha sido ejemplar, destacando por su compromiso y calidad.',
-      author: {
-        name: 'Pedro González',
-        handle: 'Urbanizaciones del Sur',
-        imageUrl: '/img/testimonios/csur.png',
-      },
+      author: { name: 'Pedro González', handle: 'Urbanizaciones del Sur', imageUrl: '/img/testimonios/csur.png' },
     },
   ]
 
   // Estilos aleatorios para partículas
   const randomStyle = () => {
-    const top = Math.random() * 100;
-    const left = Math.random() * 100;
-    const delay = Math.random() * 5;
-    const duration = 8 + Math.random() * 6; // más lento aún
+    const top = Math.random() * 100
+    const left = Math.random() * 100
+    const delay = Math.random() * 5
+    const duration = 8 + Math.random() * 6
     return {
       top: `${top}%`,
       left: `${left}%`,
@@ -142,6 +125,21 @@
       animationDuration: `${duration}s`,
     }
   }
+
+  // Script para animar título al entrar en pantalla
+  const titulo = ref(null)
+  const isVisible = ref(false)
+
+  onMounted(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible.value = entry.isIntersecting
+      },
+      { threshold: 0.5 }
+    )
+    if (titulo.value) observer.observe(titulo.value)
+    onUnmounted(() => observer.disconnect())
+  })
   </script>
 
   <style scoped>

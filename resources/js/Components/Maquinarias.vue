@@ -7,11 +7,7 @@
       <!-- Fondo patrón dorado -->
       <div
         class="absolute inset-0 z-0 pointer-events-none animate-move-pattern"
-        style="
-          background-image: radial-gradient(circle at 25% 25%, #facc15 1px, transparent 1px);
-          background-size: 60px 60px;
-          opacity: 0.2;
-        "
+        style="background-image: radial-gradient(circle at 25% 25%, #facc15 1px, transparent 1px); background-size: 60px 60px; opacity: 0.2;"
       ></div>
 
       <!-- Partículas blancas flotantes -->
@@ -26,14 +22,19 @@
 
       <!-- Contenido principal -->
       <div class="relative z-20">
-        <!-- Texto superior -->
+        <!-- Título centrado y animado -->
+        <div class="mb-14 mt-0 max-w-7xl mx-auto text-center">
 
-        <div class="mb-10 max-w-7xl mx-auto text-center">
-  <h2 class="text-lg font-semibold text-white tracking-wide uppercase text-center">
-    Equipos y servicios actualizados para liderar la construcción moderna:
-  </h2>
-</div>
-
+          <h2
+            ref="title"
+            :class="[
+              'text-lg font-semibold tracking-wide uppercase transition-transform duration-700',
+              titleInView ? 'scale-110 text-white' : 'scale-90 text-gray-300'
+            ]"
+          >
+            Equipos y servicios actualizados para liderar la construcción moderna
+          </h2>
+        </div>
 
         <!-- Carrusel -->
         <div class="relative">
@@ -97,98 +98,109 @@
     </section>
   </template>
 
-<script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import Flashcard2 from '@/Components/Flashcard2.vue'
+  <script setup>
+  import { ref, computed, onMounted, onUnmounted } from 'vue'
+  import Flashcard2 from '@/Components/Flashcard2.vue'
 
-const currentSlide = ref(0)
-const isMobile = ref(window.innerWidth < 1024)
+  const currentSlide = ref(0)
+  const isMobile = ref(window.innerWidth < 1024)
+  const titleInView = ref(false)
+  const title = ref(null)
 
-const maquinarias = [
-  { nombre: 'Camioneta Combustible GT TZ 38', imagen: '/img/maquinarias/CAMION-COMBUSTIBLE.jpg', descripcion: `Marca: Mercedes-Benz 1016\nCapacidad: 4 m³\nEstanque: Homologado\nUso: Transporte de combustible` },
-  { nombre: 'Camión Tolva LT HV 83', imagen: '/img/maquinarias/camiontolva.jpg', descripcion: `Capacidad: 14 m³\nMotor: Euro 5\nUso: Materiales granulares\nTracción: 6x4` },
-  { nombre: 'Cargador Frontal SEM 656D', imagen: '/img/maquinarias/cargadorfrontal.jpg', descripcion: `Capacidad: Balde 3 m³\nMotor: Weichai\nAplicación: Movimiento de tierra\nPeso operativo: 17 toneladas` },
-  { nombre: 'Chancadora Trakpactor', imagen: '/img/maquinarias/chancacadora.jpg', descripcion: `Tipo: Planta impactadora móvil\nMarca: Powerscreen\nCapacidad: Alta producción\nUso: Trituración de roca` },
-  { nombre: 'Excavadora Sunward SWE210', imagen: '/img/maquinarias/excavadora.jpg', descripcion: `Motor: Isuzu 6BG1\nPeso: 21 toneladas\nProfundidad: Excavación profunda\nOrugas: Acero` },
-  { nombre: 'Motoniveladora JD 670G', imagen: '/img/maquinarias/MOTONIVELADORA2.jpg', descripcion: `Motor: John Deere 6.8L\nCuchilla: 3.66 m\nPotencia: 185 hp\nTracción: AWD opcional` },
-  { nombre: 'Rodillo Compactador CS-533E', imagen: '/img/maquinarias/rollocompactador.png', descripcion: `Tipo: Compactador vibratorio\nMarca: CAT\nAplicación: Subbases y asfaltos\nRueda: Lisa` },
-  { nombre: 'Planta Seleccionadora de Áridos', imagen: '/img/maquinarias/seleccionadoraridos.jpg', descripcion: `Tipo: Planta seleccionadora\nSistema: Cribas vibratorias\nTransportadores: Integrados\nAplicación: Granulometría variable` },
-]
-
-const chunkArray = (array, size) => {
-  const chunked = []
-  for (let i = 0; i < array.length; i += size) {
-    chunked.push(array.slice(i, i + size))
-  }
-  return chunked
-}
-
-const visibleCards = ref(4)
-const chunkedMaquinarias = computed(() => chunkArray(maquinarias, visibleCards.value))
-
-const handleResize = () => {
-  isMobile.value = window.innerWidth < 1024
-}
-
-onMounted(() => {
-  window.addEventListener('resize', handleResize)
-})
-onUnmounted(() => {
-  window.removeEventListener('resize', handleResize)
-})
-
-const prevSlide = () => {
-  if (currentSlide.value > 0) currentSlide.value--
-}
-const nextSlide = () => {
-  if (currentSlide.value < chunkedMaquinarias.value.length - 1) currentSlide.value++
-}
-
-// Swipe para móviles
-let startX = 0
-let startY = 0
-let startTime = 0
-
-function startTouch(e) {
-  const touch = e.touches[0]
-  startX = touch.clientX
-  startY = touch.clientY
-  startTime = new Date().getTime()
-}
-
-function moveTouch(e) {}
-
-function endTouch(e) {
-  const touch = e.changedTouches[0]
-  const deltaX = touch.clientX - startX
-  const deltaY = touch.clientY - startY
-  const elapsedTime = new Date().getTime() - startTime
-
-  if (elapsedTime <= 400 && Math.abs(deltaX) >= 50 && Math.abs(deltaY) <= 75) {
-    if (deltaX > 0) prevSlide()
-    else nextSlide()
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5
   }
 
-  startX = 0
-  startY = 0
-  startTime = 0
-}
+  onMounted(() => {
+    window.addEventListener('resize', handleResize)
 
-// Animaciones de partículas
-const randomStyle = () => {
-  const top = Math.random() * 100
-  const left = Math.random() * 100
-  const delay = Math.random() * 5
-  const duration = 5 + Math.random() * 5
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    animationDelay: `${delay}s`,
-    animationDuration: `${duration}s`,
+    // Intersection Observer para animar el título
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        titleInView.value = entry.isIntersecting
+      })
+    }, observerOptions)
+
+    if (title.value) observer.observe(title.value)
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener('resize', handleResize)
+  })
+
+  const maquinarias = [
+    { nombre: 'Camioneta Combustible GT TZ 38', imagen: '/img/maquinarias/CAMION-COMBUSTIBLE.jpg', descripcion: `Marca: Mercedes-Benz 1016\nCapacidad: 4 m³\nEstanque: Homologado\nUso: Transporte de combustible` },
+    { nombre: 'Camión Tolva LT HV 83', imagen: '/img/maquinarias/camiontolva.jpg', descripcion: `Capacidad: 14 m³\nMotor: Euro 5\nUso: Materiales granulares\nTracción: 6x4` },
+    { nombre: 'Cargador Frontal SEM 656D', imagen: '/img/maquinarias/cargadorfrontal.jpg', descripcion: `Capacidad: Balde 3 m³\nMotor: Weichai\nAplicación: Movimiento de tierra\nPeso operativo: 17 toneladas` },
+    { nombre: 'Chancadora Trakpactor', imagen: '/img/maquinarias/chancacadora.jpg', descripcion: `Tipo: Planta impactadora móvil\nMarca: Powerscreen\nCapacidad: Alta producción\nUso: Trituración de roca` },
+    { nombre: 'Excavadora Sunward SWE210', imagen: '/img/maquinarias/excavadora.jpg', descripcion: `Motor: Isuzu 6BG1\nPeso: 21 toneladas\nProfundidad: Excavación profunda\nOrugas: Acero` },
+    { nombre: 'Motoniveladora JD 670G', imagen: '/img/maquinarias/MOTONIVELADORA2.jpg', descripcion: `Motor: John Deere 6.8L\nCuchilla: 3.66 m\nPotencia: 185 hp\nTracción: AWD opcional` },
+    { nombre: 'Rodillo Compactador CS-533E', imagen: '/img/maquinarias/rollocompactador.png', descripcion: `Tipo: Compactador vibratorio\nMarca: CAT\nAplicación: Subbases y asfaltos\nRueda: Lisa` },
+    { nombre: 'Planta Seleccionadora de Áridos', imagen: '/img/maquinarias/seleccionadoraridos.jpg', descripcion: `Tipo: Planta seleccionadora\nSistema: Cribas vibratorias\nTransportadores: Integrados\nAplicación: Granulometría variable` },
+  ]
+
+  const chunkArray = (array, size) => {
+    const chunked = []
+    for (let i = 0; i < array.length; i += size) {
+      chunked.push(array.slice(i, i + size))
+    }
+    return chunked
   }
-}
-</script>
 
+  const visibleCards = ref(4)
+  const chunkedMaquinarias = computed(() => chunkArray(maquinarias, visibleCards.value))
+
+  const handleResize = () => {
+    isMobile.value = window.innerWidth < 1024
+  }
+
+  const prevSlide = () => {
+    if (currentSlide.value > 0) currentSlide.value--
+  }
+  const nextSlide = () => {
+    if (currentSlide.value < chunkedMaquinarias.value.length - 1) currentSlide.value++
+  }
+
+  // Swipe
+  let startX = 0
+  let startY = 0
+  let startTime = 0
+
+  function startTouch(e) {
+    const touch = e.touches[0]
+    startX = touch.clientX
+    startY = touch.clientY
+    startTime = new Date().getTime()
+  }
+
+  function moveTouch(e) {}
+
+  function endTouch(e) {
+    const touch = e.changedTouches[0]
+    const deltaX = touch.clientX - startX
+    const deltaY = touch.clientY - startY
+    const elapsedTime = new Date().getTime() - startTime
+
+    if (elapsedTime <= 400 && Math.abs(deltaX) >= 50 && Math.abs(deltaY) <= 75) {
+      if (deltaX > 0) prevSlide()
+      else nextSlide()
+    }
+  }
+  const randomStyle = () => {
+    const top = Math.random() * 100
+    const left = Math.random() * 100
+    const delay = Math.random() * 5
+    const duration = 5 + Math.random() * 5
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      animationDelay: `${delay}s`,
+      animationDuration: `${duration}s`,
+    }
+  }
+  </script>
 
   <style scoped>
   @keyframes move-pattern {
