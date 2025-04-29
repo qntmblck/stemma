@@ -44,31 +44,45 @@
           <button
             v-if="isMobile"
             @click="prevSlide"
-            class="absolute left-0 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-10 text-3xl transition"
+            class="absolute left-2 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-30 text-3xl transition"
             aria-label="Anterior"
           >
             ‹
           </button>
 
           <div
-            class="overflow-hidden"
+            class="overflow-hidden relative"
             @touchstart="startTouch"
             @touchmove="moveTouch"
             @touchend="endTouch"
           >
             <div
-              class="flex transition-transform duration-500 ease-in-out gap-4"
+              class="flex transition-transform duration-500 ease-in-out"
               :style="isMobile ? { transform: `translateX(-${currentSlide * 100}%)` } : undefined"
             >
+              <!-- Mobile: por slide -->
               <div
-                class="w-full grid gap-4"
-                :class="{
-                  'min-w-full grid-cols-2 grid-rows-2': isMobile,
-                  'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4': !isMobile
-                }"
+                v-if="isMobile"
+                v-for="(grupo, index) in chunkedMaquinarias"
+                :key="index"
+                class="min-w-full shrink-0 grid grid-cols-2 grid-rows-2 gap-4 px-4"
               >
                 <Flashcard2
-                  v-for="maquina in isMobile ? chunkedMaquinarias[currentSlide] : maquinarias"
+                  v-for="maquina in grupo"
+                  :key="maquina.nombre"
+                  :title="maquina.nombre"
+                  :description="maquina.descripcion"
+                  :image="maquina.imagen"
+                />
+              </div>
+
+              <!-- Desktop -->
+              <div
+                v-else
+                class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-4"
+              >
+                <Flashcard2
+                  v-for="maquina in maquinarias"
                   :key="maquina.nombre"
                   :title="maquina.nombre"
                   :description="maquina.descripcion"
@@ -82,7 +96,7 @@
           <button
             v-if="isMobile"
             @click="nextSlide"
-            class="absolute right-0 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-10 text-3xl transition"
+            class="absolute right-2 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-30 text-3xl transition"
             aria-label="Siguiente"
           >
             ›
@@ -112,7 +126,7 @@
     { nombre: 'Planta Seleccionadora de Áridos', imagen: '/img/maquinarias/seleccionadoraridos.jpg', descripcion: `Tipo: Planta seleccionadora\nSistema: Cribas vibratorias\nTransportadores: Integrados\nAplicación: Granulometría variable` },
   ]
 
-  // División responsiva de maquinarias
+  // División responsiva
   const chunkArray = (array, size) => {
     const chunked = []
     for (let i = 0; i < array.length; i += size) {
@@ -159,7 +173,7 @@
     if (currentSlide.value < chunkedMaquinarias.value.length - 1) currentSlide.value++
   }
 
-  // Partículas random
+  // Animaciones
   const randomStyle = () => {
     const top = Math.random() * 100
     const left = Math.random() * 100
@@ -173,19 +187,17 @@
     }
   }
 
-  // Title Observer para animación al entrar
+  // Observer para animar título
   onMounted(() => {
     window.addEventListener('resize', handleResize)
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         titleInView.value = entry.isIntersecting
       })
-    }, { root: null, rootMargin: '0px', threshold: 0.5 })
+    }, { threshold: 0.5 })
 
     if (title.value) observer.observe(title.value)
   })
-
   onUnmounted(() => {
     window.removeEventListener('resize', handleResize)
   })
