@@ -10,10 +10,13 @@
         style="background-image: radial-gradient(circle at 25% 25%, #facc15 1px, transparent 1px); background-size: 60px 60px; opacity: 0.2;"
       ></div>
 
-      <!-- Partículas blancas flotantes -->
-      <div class="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+      <!-- Partículas flotantes solo en desktop -->
+      <div
+        v-if="!isMobile"
+        class="absolute inset-0 z-10 pointer-events-none overflow-hidden"
+      >
         <div
-          v-for="i in 30"
+          v-for="i in 10"
           :key="i"
           class="absolute w-1 h-1 bg-white/20 rounded-full animate-float"
           :style="randomStyle()"
@@ -22,9 +25,8 @@
 
       <!-- Contenido principal -->
       <div class="relative z-20">
-        <!-- Título centrado y animado -->
-        <div class="mb-14 mt-0 max-w-7xl mx-auto text-center">
-
+        <!-- Título centrado animado -->
+        <div class="mb-14 max-w-7xl mx-auto text-center">
           <h2
             ref="title"
             :class="[
@@ -44,7 +46,9 @@
             @click="prevSlide"
             class="absolute left-0 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-10 text-3xl transition"
             aria-label="Anterior"
-          >‹</button>
+          >
+            ‹
+          </button>
 
           <div
             class="overflow-hidden"
@@ -54,29 +58,17 @@
           >
             <div
               class="flex transition-transform duration-500 ease-in-out gap-4"
-              :style="{ transform: isMobile ? `translateX(-${currentSlide * 100}%)` : 'none' }"
+              :style="isMobile ? { transform: `translateX(-${currentSlide * 100}%)` } : undefined"
             >
               <div
-                v-if="isMobile"
-                v-for="(chunk, i) in chunkedMaquinarias"
-                :key="i"
-                class="min-w-full grid grid-cols-2 grid-rows-2 gap-4"
+                class="w-full grid gap-4"
+                :class="{
+                  'min-w-full grid-cols-2 grid-rows-2': isMobile,
+                  'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4': !isMobile
+                }"
               >
                 <Flashcard2
-                  v-for="maquina in chunk"
-                  :key="maquina.nombre"
-                  :title="maquina.nombre"
-                  :description="maquina.descripcion"
-                  :image="maquina.imagen"
-                />
-              </div>
-
-              <div
-                v-else
-                class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-4"
-              >
-                <Flashcard2
-                  v-for="maquina in maquinarias"
+                  v-for="maquina in isMobile ? chunkedMaquinarias[currentSlide] : maquinarias"
                   :key="maquina.nombre"
                   :title="maquina.nombre"
                   :description="maquina.descripcion"
@@ -92,7 +84,9 @@
             @click="nextSlide"
             class="absolute right-0 top-1/2 -translate-y-1/2 border border-yellow-400 hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-200 px-3 py-2 rounded-full z-10 text-3xl transition"
             aria-label="Siguiente"
-          >›</button>
+          >
+            ›
+          </button>
         </div>
       </div>
     </section>
@@ -107,29 +101,6 @@
   const titleInView = ref(false)
   const title = ref(null)
 
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.5
-  }
-
-  onMounted(() => {
-    window.addEventListener('resize', handleResize)
-
-    // Intersection Observer para animar el título
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        titleInView.value = entry.isIntersecting
-      })
-    }, observerOptions)
-
-    if (title.value) observer.observe(title.value)
-  })
-
-  onUnmounted(() => {
-    window.removeEventListener('resize', handleResize)
-  })
-
   const maquinarias = [
     { nombre: 'Camioneta Combustible GT TZ 38', imagen: '/img/maquinarias/CAMION-COMBUSTIBLE.jpg', descripcion: `Marca: Mercedes-Benz 1016\nCapacidad: 4 m³\nEstanque: Homologado\nUso: Transporte de combustible` },
     { nombre: 'Camión Tolva LT HV 83', imagen: '/img/maquinarias/camiontolva.jpg', descripcion: `Capacidad: 14 m³\nMotor: Euro 5\nUso: Materiales granulares\nTracción: 6x4` },
@@ -141,6 +112,7 @@
     { nombre: 'Planta Seleccionadora de Áridos', imagen: '/img/maquinarias/seleccionadoraridos.jpg', descripcion: `Tipo: Planta seleccionadora\nSistema: Cribas vibratorias\nTransportadores: Integrados\nAplicación: Granulometría variable` },
   ]
 
+  // División responsiva de maquinarias
   const chunkArray = (array, size) => {
     const chunked = []
     for (let i = 0; i < array.length; i += size) {
@@ -148,35 +120,26 @@
     }
     return chunked
   }
-
   const visibleCards = ref(4)
   const chunkedMaquinarias = computed(() => chunkArray(maquinarias, visibleCards.value))
 
+  let resizeTimeout = null
   const handleResize = () => {
-    isMobile.value = window.innerWidth < 1024
+    clearTimeout(resizeTimeout)
+    resizeTimeout = setTimeout(() => {
+      isMobile.value = window.innerWidth < 1024
+    }, 200)
   }
 
-  const prevSlide = () => {
-    if (currentSlide.value > 0) currentSlide.value--
-  }
-  const nextSlide = () => {
-    if (currentSlide.value < chunkedMaquinarias.value.length - 1) currentSlide.value++
-  }
-
-  // Swipe
-  let startX = 0
-  let startY = 0
-  let startTime = 0
-
+  // Swipe logic móvil
+  let startX = 0, startY = 0, startTime = 0
   function startTouch(e) {
     const touch = e.touches[0]
     startX = touch.clientX
     startY = touch.clientY
     startTime = new Date().getTime()
   }
-
   function moveTouch(e) {}
-
   function endTouch(e) {
     const touch = e.changedTouches[0]
     const deltaX = touch.clientX - startX
@@ -188,6 +151,15 @@
       else nextSlide()
     }
   }
+
+  const prevSlide = () => {
+    if (currentSlide.value > 0) currentSlide.value--
+  }
+  const nextSlide = () => {
+    if (currentSlide.value < chunkedMaquinarias.value.length - 1) currentSlide.value++
+  }
+
+  // Partículas random
   const randomStyle = () => {
     const top = Math.random() * 100
     const left = Math.random() * 100
@@ -200,6 +172,23 @@
       animationDuration: `${duration}s`,
     }
   }
+
+  // Title Observer para animación al entrar
+  onMounted(() => {
+    window.addEventListener('resize', handleResize)
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        titleInView.value = entry.isIntersecting
+      })
+    }, { root: null, rootMargin: '0px', threshold: 0.5 })
+
+    if (title.value) observer.observe(title.value)
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener('resize', handleResize)
+  })
   </script>
 
   <style scoped>
@@ -217,6 +206,6 @@
     100% { transform: translateY(0) scale(1); opacity: 0.5; }
   }
   .animate-float {
-    animation: float infinite ease-in-out;
+    animation: float 5s ease-in-out infinite;
   }
   </style>
