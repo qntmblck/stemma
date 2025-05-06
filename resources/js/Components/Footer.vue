@@ -50,12 +50,13 @@
             </div>
 
             <!-- Mapa actualizado -->
-            <div class="w-full h-96 rounded-xl overflow-hidden shadow-xl relative">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11360.518375032407!2d-70.77939047130636!3d-33.24605036819924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662bc2ab0096e85%3A0x144213a8b702d3be!2sSta.%20Rosa%20de%20Santiago%20%26%20Cam.%20Uno%2C%20Batuco%2C%20Lampa%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1746529815067!5m2!1ses!2scl"
-                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-              </iframe>
-            </div>
+<div class="w-full h-96 rounded-xl overflow-hidden shadow-xl relative">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d23911.18141340326!2d-72.883711!3d-41.484818!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9618314559fe796f%3A0xe2b2dc4adc7dda60!2sParcelacion%20Santa%20Elena!5e0!3m2!1ses-419!2scl!4v1746533114033!5m2!1ses-419!2scl"
+    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
           </div>
 
           <!-- Línea inferior -->
