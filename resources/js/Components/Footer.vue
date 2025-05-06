@@ -49,24 +49,12 @@
               </div>
             </div>
 
-            <!-- Mapa -->
+            <!-- Mapa actualizado -->
             <div class="w-full h-96 rounded-xl overflow-hidden shadow-xl relative">
-              <img
-                v-if="!mapaVisible"
-                src="/img/mapa-placeholder.jpg"
-                alt="Ubicación Constructora Santa Emma"
-                class="absolute inset-0 w-full h-full object-cover blur-sm transition duration-500"
-              />
               <iframe
-                v-if="mapaVisible"
-                @load="onMapLoad"
-                src="https://www.google.com/maps?q=Parcela+Santa+Elena,+Puerto+Montt,+Los+Lagos,+Chile&output=embed"
-                class="absolute inset-0 w-full h-full"
-                style="border:0;"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11360.518375032407!2d-70.77939047130636!3d-33.24605036819924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662bc2ab0096e85%3A0x144213a8b702d3be!2sSta.%20Rosa%20de%20Santiago%20%26%20Cam.%20Uno%2C%20Batuco%2C%20Lampa%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1746529815067!5m2!1ses!2scl"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
             </div>
           </div>
 
@@ -113,13 +101,7 @@
   <script setup>
   import { ref, onMounted } from 'vue'
 
-  const mapaVisible = ref(false)
-
-  onMounted(() => {
-    setTimeout(() => {
-      mapaVisible.value = true
-    }, 1200)
-  })
+  const mapaVisible = ref(true)
 
   const onMapLoad = () => {
     console.log('Mapa cargado correctamente.')
