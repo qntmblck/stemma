@@ -73,12 +73,6 @@ export function Header() {
                     ))}
                 </div>
 
-                <div className="hidden items-center gap-x-4 lg:flex">
-                    <a href={routeTo('login', undefined, '/login')} className="rounded-md bg-yellow-500 px-2 py-2 text-sm font-bold text-white transition hover:bg-yellow-600">
-                        Ingresar
-                    </a>
-                </div>
-
                 <div className="ml-auto lg:hidden">
                     <button type="button" onClick={() => setOpen(!open)} className="text-gray-800 focus:outline-none" aria-label="Abrir navegación">
                         <span className="block text-3xl leading-none">{open ? '×' : '☰'}</span>
@@ -93,10 +87,6 @@ export function Header() {
                             {label}
                         </a>
                     ))}
-                    <hr className="my-2 border-yellow-200" />
-                    <a href={routeTo('login', undefined, '/login')} className="block text-sm font-bold text-yellow-700 transition hover:text-yellow-800">
-                        Ingresar
-                    </a>
                 </div>
             )}
         </header>
