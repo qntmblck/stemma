@@ -1,4 +1,3 @@
-import { Head } from '@inertiajs/react';
 import Header from '@/Components/Header.jsx';
 import Hero from '@/Components/Hero.jsx';
 import Footer from '@/Components/Footer.jsx';
@@ -7,11 +6,12 @@ import CarruselMaquinarias from '@/Components/CarruselMaquinarias.jsx';
 import GridMaquinarias from '@/Components/GridMaquinarias.jsx';
 import FiltroMaquinaria from '@/Components/FiltroMaquinaria.jsx';
 import FichaMaquinaria from '@/Components/FichaMaquinaria.jsx';
+import Seo from '@/Components/Seo.jsx';
 
 export default function Catalogo() {
     return (
         <div className="bg-white">
-            <Head title="Catálogo | Santa Emma" />
+            <Seo pageKey="catalogo" preloadImage />
             <Header />
             <Hero title="Catálogo de Servicios y Maquinarias" subtitle="Descubre todo lo que ofrecemos para potenciar tu obra." image="/img/h1.jpg" />
             <Servicios />
@@ -23,4 +23,3 @@ export default function Catalogo() {
         </div>
     );
 }
-

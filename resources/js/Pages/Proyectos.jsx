@@ -1,15 +1,15 @@
-import { Head } from '@inertiajs/react';
 import Header from '@/Components/Header.jsx';
 import Hero from '@/Components/Hero.jsx';
 import Footer from '@/Components/Footer.jsx';
 import IntroProyectos from '@/Components/IntroProyectos.jsx';
 import ProyectosGrid from '@/Components/ProyectosGrid.jsx';
 import Certificaciones from '@/Components/Certificaciones.jsx';
+import Seo from '@/Components/Seo.jsx';
 
 export default function Proyectos() {
     return (
         <div className="bg-white">
-            <Head title="Proyectos | Santa Emma" />
+            <Seo pageKey="proyectos" preloadImage />
             <Header />
             <Hero title="Proyectos realizados" subtitle="Conectando experiencia, diseño y ejecución en cada obra." image="/img/h1.jpg" />
             <IntroProyectos />
@@ -19,4 +19,3 @@ export default function Proyectos() {
         </div>
     );
 }
-

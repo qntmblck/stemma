@@ -37,7 +37,11 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
-            //
+            'app' => [
+                'name' => config('app.name', 'Santa Emma'),
+                'url' => rtrim(config('app.url'), '/'),
+            ],
+            'seo' => config('seo'),
         ];
     }
 }
